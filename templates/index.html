@@ -1,0 +1,900 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Proxy IP Checker</title>
+    
+    <!-- Favicon -->
+    <link rel="icon" href="https://raw.githubusercontent.com/jaka2m/project/refs/heads/main/social/bot.png">
+    
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+    <link rel="stylesheet" href="https://unpkg.com/leaflet/dist/leaflet.css" />
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/js/all.min.js"></script>
+    <script src="https://unpkg.com/leaflet/dist/leaflet.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
+    <style>
+          :root {
+    --color-bg: #050a18;
+    --color-bg-card: #0a1128;
+    --color-primary: #00ddff;
+    --color-secondary: #7700ff;
+    --color-accent: #ff00aa;
+    --color-text: #e0f7ff;
+    --color-text-dim: #8ba3b8;
+    --color-success: #00ffaa;
+    --color-error: #ff2266;
+    --color-input-bg: rgba(0, 221, 255, 0.05);
+    --color-input-border: rgba(0, 221, 255, 0.2);
+    --glow-primary: 0 0 10px rgba(0, 221, 255, 0.5), 0 0 20px rgba(0, 221, 255, 0.2);
+    --glow-secondary: 0 0 10px rgba(119, 0, 255, 0.5), 0 0 20px rgba(119, 0, 255, 0.2);
+    --transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
+    --card-width: 100%;
+    --card-max-width: 480px;
+    --card-padding: 1.5rem;
+    --card-border-radius: 12px;
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+      	
+      font-family: monospace;
+    background: black;
+    color: #0f0;
+    text-align: center;
+    background-size: cover;
+        justify-content: center;
+        align-items: center;
+  animation: rainbowBackground 10s infinite; 
+}
+
+
+     h1 {
+      font-family: 'Rajdhani', sans-serif;
+      padding-top: 10px;
+      margin-top: 10px;
+      color: black;
+            text-align: center;
+            font-size: 9vw;
+            font-weight: bold;
+            text-shadow: 
+                0 0 5px rgba(0, 123, 255, 0.8),
+                0 0 10px rgba(0, 123, 255, 0.8),
+                0 0 20px rgba(0, 123, 255, 0.8),
+                0 0 30px rgba(0, 123, 255, 0.8),
+                0 0 40px rgba(0, 123, 255, 0.8);
+    
+         background: linear-gradient(45deg, var(--primary), var(--secondary), var(--dark));
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: transparent;
+        text-shadow: 0 0 30px #000;
+        position: relative;
+        animation: titlePulse 3s ease-in-out infinite;
+    }
+
+      @keyframes titlePulse {
+        0%, 100% { transform: scale(1); filter: brightness(1); }
+        50% { transform: scale(1.02); filter: brightness(1.2); }
+      }
+    
+    h2 {
+      color: black;
+            text-align: center;
+            font-size: 4vw;
+            font-weight: bold;
+            text-shadow: 
+                0 0 5px rgba(0, 123, 255, 0.8),
+                0 0 10px rgba(0, 123, 255, 0.8),
+                0 0 20px rgba(0, 123, 255, 0.8),
+                0 0 30px rgba(0, 123, 255, 0.8),
+                0 0 40px rgba(0, 123, 255, 0.8);
+    }
+    header,  footer {
+      box-sizing: border-box; /* Pastikan padding dihitung dalam lebar elemen */
+      background-color: ;
+      color: white;
+      text-align: center;
+      border: 0px solid rgba(143, 0, 0, 0.89); /* Border dengan warna abu-abu */
+      border-radius: 10px;
+      padding: 0 20px;
+      position: fixed;
+      width: 100%;
+      left: 0;
+      right: 2px;
+      pointer-events: none;
+      z-index: 10;
+    }
+
+    header {
+      top: 0;
+    }
+
+    footer {
+      bottom: 0;
+    }
+    
+      .swal-popup-extra-small-text {
+    font-size: 12px; /* Ukuran font untuk seluruh pop-up */
+}
+
+.swal-title-extra-small-text {
+    font-size: 12px; /* Ukuran font untuk judul */
+    font-weight: bold;
+}
+
+.swal-content-extra-small-text {
+    font-size: 12px; /* Ukuran font untuk teks konten */
+}
+
+
+
+    .rainbow-text {
+      font-size: 15px;
+      font-weight: bold;
+      animation: rainbow 2s infinite;
+    }
+
+
+      /* Reset dasar */
+  * {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+  }
+    /* Animasi Loading */
+
+
+.loading-text {
+    font-size: 18px;
+    color: #FF5722; /* Warna untuk teks 'Loading...' */
+    margin-left: 10px;
+    font-weight: bold; /* Menambahkan ketebalan pada teks */
+}
+    
+
+        #loading { display: none; font-size: 18px; font-weight: bold; }
+    
+    @keyframes moveColors {
+  100% {
+    background-position: -200%; /* Mulai dari luar kiri */
+  }
+  0% {
+    background-position: 200%; /* Bergerak ke kanan */
+  }
+}
+
+  #loading {
+  display: none; font-size: 20px; font-weight: bold;
+  
+  background: linear-gradient(90deg, red, orange, yellow, green, blue, purple);
+  background-size: 200%;
+  color: transparent;
+  -webkit-background-clip: text;
+  animation: moveColors 5s linear infinite;
+}
+  
+  
+    .container {
+    width: 80%;  /* Menurunkan lebar */
+    max-width: 500px;  /* Mengurangi lebar maksimum */
+    margin: 50px auto;
+    background: rgba(0, 0, 0, 0.8);
+    padding: 15px;  /* Mengurangi padding */
+    border-radius: 10px;
+    box-shadow: 0 0 10px #0f0;
+}
+
+/* Responsif untuk layar kecil */
+@media (max-width: 768px) {
+    .container {
+        width: 90%;
+        margin: 20px auto;
+        padding: 10px;  /* Padding lebih kecil */
+        box-shadow: 0 0 8px #0f0;
+    }
+}
+
+/* Tampilan lebih lebar di laptop */
+@media (min-width: 1024px) {
+    .container {
+        width: 90%;  /* Menurunkan lebar sedikit */
+        max-width: 1200px;  /* Menurunkan lebar maksimum */
+        padding: 20px;  /* Padding lebih kecil */
+        box-shadow: 0 0 15px #0f0;
+    }
+}
+
+       .navbarconten {
+    width: 100%;
+    overflow-x: auto; /* Mengaktifkan scroll horizontal */
+    margin-bottom: 0px;
+    border: 1px solid #000; /* Border dengan warna abu-abu */
+    border-radius: 10px; /* Membuat sudut melengkung */
+    padding: 0px; /* Memberi jarak antara border dan konten */
+    background-color: rgba(0, 0, 0, 0.82); /* Warna latar belakang */
+    box-shadow: 0 0 15px rgba(255, 255, 255, 0.6), /* Glow putih */
+              0 0 30px rgba(0, 150, 255, 0.5);   /* Glow biru */
+
+    }
+      .navbar {
+            position: fixed;
+            top: 50%;
+            left: -80px; /* Awalnya disembunyikan */
+            transform: translateY(-50%);
+            width: 80px;
+            background: ;
+            color: white;
+            padding: 10px 0;
+            transition: left 0.3s ease-in-out;
+            z-index: 1000;
+            border-radius: 0 10px 10px 0;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 10px;
+        }
+
+        /* Saat navbar terbuka */
+        .navbar.show {
+            left: 0;
+        }
+
+        .navbar a img {
+            width: 40px;
+        }
+        
+        .navbar a {
+            display: block;
+            color: white;
+            text-decoration: none;
+            padding: 10px 20px;
+        }
+        .navbar a:hover {
+            background: ;
+        }
+        
+        /* Tombol Toggle */
+        .toggle-btn {
+            position: absolute;
+            top: 50%;
+            right: -30px; /* Posisi tombol di tengah kanan navbar */
+            transform: translateY(-50%);
+            background: ;
+            border: none;
+            cursor: pointer;
+            z-index: 1001;
+            padding: 10px;
+            border-radius: 0 10px 10px 0;
+            transition: right 0.3s ease-in-out;
+        }
+
+        .toggle-btn img {
+            width: 20px; /* Ukuran gambar lebih kecil */
+            height: 150px; /* Ukuran gambar lebih kecil */
+        }
+
+        /* Saat navbar terbuka, tombol ikut bergeser */
+        .navbar.show .toggle-btn {
+            right: -29px;
+        }
+        
+        @keyframes blink {
+    0% { opacity: 1; }
+    100% { opacity: 0.3; }
+  }
+  
+  .input-container {
+    margin-bottom: 20px;
+}
+
+.input-container input {
+    width: 100%;
+    padding: 10px;
+    border: 1px solid #9b4de0; /* Ganti warna border menjadi ungu */
+    border-radius: 5px;
+    font-size: 16px;
+    text-align: center;
+    background-color: rgba(155, 77, 224, 0.1); /* Ganti background input menjadi ungu muda */
+    color: #9b4de0; /* Ganti warna teks menjadi ungu */
+}
+
+.input-container input:focus {
+    border-color: #9b4de0; /* Warna border lebih terang saat fokus */
+    background-color: rgba(155, 77, 224, 0.2); /* Warna background saat input fokus */
+}
+
+        #map {
+  height: 350px;
+  width: 100%;
+  margin-top: 20px;
+  border-radius: 8px;
+  border: 1px solid rgba(255, 255, 255, 0.3);
+  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+}
+
+          
+
+  /* Reset dasar */
+  * {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+  }
+
+
+  /* Canvas Matrix */
+  canvas, #matrix {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: -1;
+  }
+
+  h2 {
+    margin-bottom: 15px;
+  }
+
+  /* Input dan tombol */
+  input, button {
+    width: 100%;
+    padding: 12px;
+    margin: 6px 0;
+    font-size: 16px;
+    border-radius: 5px;
+    border: none;
+  }
+
+  input {
+    background: #2d3748;
+    color: #00FF00;
+  }
+
+  button {
+    background: #0f0;
+    color: black;
+    font-weight: bold;
+    cursor: pointer;
+  }
+
+  button:hover:enabled {
+    background: #0d0;
+  }
+
+  button:disabled {
+    background: #555;
+    cursor: not-allowed;
+  }
+
+  
+  /* Tabel */
+  table {
+    width: 100%;
+    border-collapse: collapse;
+    margin: 20px 0;
+    background: rgba(255, 255, 255, 0.1);
+    border-radius: 5px;
+    overflow: hidden;
+  }
+
+  th, td {
+    padding: 12px 15px;
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    text-align: left;
+  }
+
+  th {
+    background: rgba(255, 255, 255, 0.2);
+  }
+
+  tr:nth-child(even) {
+    background: rgba(255, 255, 255, 0.05);
+  }
+
+  
+  
+  /* Efek fade-in */
+  .fade-in {
+    opacity: 0;
+    transition: opacity 0.5s ease-in-out;
+  }
+
+  .fade-in.show {
+    opacity: 1;
+  }
+
+  /* Efek teks ala hacker */
+  .matrix-alert {
+    font-family: 'Courier New', monospace;
+    text-shadow: 0 0 5px #00FF00, 0 0 10px #00FF00;
+  }
+
+.tech-detail {
+    position: absolute;
+    background: var(--color-primary);
+    opacity: 0.1;
+    z-index: -1;
+}
+
+.tech-detail-1 {
+    width: 40px;
+    height: 40px;
+    top: 20px;
+    right: 20px;
+    border-radius: 50%;
+    box-shadow: 0 0 20px var(--color-primary);
+}
+
+.tech-detail-2 {
+    width: 80px;
+    height: 2px;
+    bottom: 40px;
+    left: -20px;
+    transform: rotate(45deg);
+}
+
+.tech-detail-3 {
+    width: 15px;
+    height: 15px;
+    bottom: 20px;
+    right: 40px;
+    transform: rotate(45deg);
+}
+
+.nav-buttons {
+  display: flex;
+  justify-content: center;
+  gap: 8px;
+  margin-bottom: 20px;
+  flex-wrap: wrap; /* Tombol akan wrap (pindah baris) */
+  padding: 15px 0;
+}
+
+.nav-button {
+  background: rgba(106, 17, 203, 0.4);  /* Lebih terang */
+  border: 1px solid rgba(106, 17, 203, 0.5);  /* Meningkatkan kecerahan border */
+  color: var(--text-secondary);
+  padding: 6px 12px;
+  border-radius: 20px;
+  font-size: 0.85rem; 
+  transition: all 0.3s ease;
+  text-decoration: none;
+  display: flex;
+  align-items: center;
+  gap: 5px;
+}
+
+.nav-button:hover {
+  background: rgba(106, 17, 203, 0.5);  /* Meningkatkan kecerahan saat hover */
+  color: var(--text-primary);
+  transform: translateY(-3px);  /* Memberikan efek gerakan lebih tajam */
+  box-shadow: 0 0 15px rgba(106, 17, 203, 0.7); /* Bayangan lebih terang */
+  border-color: rgba(106, 17, 203, 0.6); /* Border lebih cerah saat hover */
+}
+
+.nav-button.active {
+  background: linear-gradient(90deg, #00ff00, #00cc33, #009900); /* Gradien hijau dengan nuansa Matrix */
+  color: white;
+  border: none;
+  box-shadow: 0 0 10px rgba(0, 255, 0, 0.5); /* Efek glow hijau */
+}
+
+.title-container {
+    text-align: center;
+    margin-bottom: 1.5rem;
+    position: relative;
+}
+
+.subtitle {
+            font-size: 24px;
+            font-family: 'Courier New', monospace;
+            white-space: nowrap;
+            overflow: hidden;
+            border-right: 4px solid #0f0; /* Membuat efek kursor */
+            animation: typing 4s steps(30) infinite, blink 0.75s step-end infinite;
+        }
+
+        /* Animasi mengetik */
+        @keyframes typing {
+            from {
+                width: 0;
+            }
+            to {
+                width: 100%;
+            }
+        }
+
+        /* Animasi kursor berkedip */
+        @keyframes blink {
+            50% {
+                border-color: transparent;
+            }
+        }
+        
+.title {
+    font-family: 'Orbitron', sans-serif;
+    font-weight: 700;
+    font-size: 1.8rem;
+    letter-spacing: 1px;
+    margin: 0;
+    background: linear-gradient(90deg, var(--color-primary), var(--color-secondary));
+    -webkit-background-clip: text;
+    background-clip: text;
+    -webkit-text-fill-color: transparent;
+    position: relative;
+    display: inline-block;
+}
+
+.title::after {
+    content: "CHECKER";
+    position: absolute;
+    top: -8px;
+    right: -30px;
+    font-size: 0.7rem;
+    font-weight: 400;
+    background: var(--color-accent);
+    color: var(--color-bg);
+    padding: 2px 5px;
+    border-radius: 3px;
+    -webkit-text-fill-color: var(--color-bg);
+    transform: rotate(15deg);
+}
+
+.title {
+        font-size: 1.5rem;
+    }
+    
+    .subtitle {
+        font-size: 0.8rem;
+    }
+    
+    .geo-btn {
+  background: rgba(106, 17, 203, 0.4);  /* Lebih terang */
+  border: 1px solid rgba(106, 17, 203, 0.5);  /* Meningkatkan kecerahan border */
+  color: var(--text-secondary);
+  padding: 6px 12px;
+  border-radius: 20px;
+  font-size: 0.85rem; 
+  transition: all 0.3s ease;
+  text-decoration: none;
+  display: flex;
+  justify-content: center; /* Pastikan teks rata tengah secara horizontal */
+  align-items: center; /* Rata tengah secara vertikal */
+  gap: 5px;
+}
+
+.geo-btn:hover {
+  background: rgba(106, 17, 203, 0.5);  /* Meningkatkan kecerahan saat hover */
+  color: var(--text-primary);
+  transform: translateY(-3px);  /* Memberikan efek gerakan lebih tajam */
+  box-shadow: 0 0 15px rgba(106, 17, 203, 0.7); /* Bayangan lebih terang */
+  border-color: rgba(106, 17, 203, 0.6); /* Border lebih cerah saat hover */
+}
+
+.geo-btn.active {
+  background: linear-gradient(90deg, #00ff00, #00cc33, #009900); /* Gradien hijau dengan nuansa Matrix */
+  color: white;
+  border: none;
+  box-shadow: 0 0 10px rgba(0, 255, 0, 0.5); /* Efek glow hijau */
+}
+
+        #map {
+            width: 100%;
+            height: 400px;
+        }
+
+        .form-container {
+            background-color: #444;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            margin-bottom: 20px;
+        }
+
+        .form-container textarea,
+.form-container button {
+    width: 100%;
+    padding: 12px;
+    background-color: rgba(51, 51, 51, 0.8); /* Transparan 80% dengan latar belakang abu-abu gelap */
+    border: none;
+    border-radius: 5px;
+    color: white;
+    margin-bottom: 10px;
+    font-size: 16px;
+}
+
+.form-container button {
+    background-color: rgba(106, 90, 173, 0.9); /* Transparan 90% dengan warna ungu */
+}
+
+        .result-table {
+            width: 100%;
+            border-collapse: collapse;
+            table-layout: fixed; /* Memastikan tabel memiliki ukuran tetap */
+        }
+
+        .result-table th, .result-table td {
+            padding: 12px;
+            border: 1px solid #444;
+            text-align: left;
+            word-wrap: break-word;
+        }
+
+        .error-message {
+            color: red;
+        }
+
+        /* Responsif untuk mobile */
+        @media (max-width: 768px) {
+            .form-container {
+                padding: 15px;
+            }
+
+            .form-container textarea,
+            .form-container button {
+                font-size: 14px;
+                padding: 10px;
+            }
+
+            .result-table th, .result-table td {
+                font-size: 12px;
+                padding: 8px;
+            }
+
+            #map {
+                height: 300px;
+            }
+        }
+
+        /* Untuk tampilan di mobile dan tablet */
+        @media (max-width: 480px) {
+            .form-container textarea,
+            .form-container button {
+                font-size: 13px;
+                padding: 8px;
+            }
+
+            .result-table th, .result-table td {
+                font-size: 10px;
+                padding: 6px;
+            }
+
+            #map {
+                height: 250px;
+            }
+        }
+    </style>
+</head>
+<body>
+<canvas id="matrix"></canvas>
+<div class="container">
+    <div class="form-container">
+    	<div class="input-container">
+         <div class="tech-detail tech-detail-1"></div>
+            <div class="tech-detail tech-detail-2"></div>
+            <div class="tech-detail tech-detail-3"></div>
+
+            <div class="title-container">
+                <h1 class="title">GEO - PROJECT</h1>
+                <p class="subtitle">Check Proxyip Cloudflare</p>
+            </div>
+
+            
+        <h2>Check Multiple Proxy IPs</h2>
+        <textarea id="ipInput" rows="5" placeholder="Enter IP:Port list, one per line..."></textarea>
+        <button class="geo-btn active" onclick="checkMultipleProxies()">Check</button>
+        <div id="loading">Loading...</div>
+    </div>
+
+    <!-- Wrapper untuk tabel -->
+    <div class="table-wrapper">
+        <table class="result-table" id="resultTable">
+            <thead>
+                <tr>
+                    <th>IP</th>
+                    <th>STATUS</th>
+                    <th>PORT</th>
+                    <th>ISP</th>
+                    <th>DELAY</th>
+                    
+                </tr>
+            </thead>
+            <tbody id="resultBody">
+                
+            </tbody>
+        </table>
+    </div>
+
+    <div id="map"></div>
+</div>
+
+
+<script>
+let map;
+
+window.onload = function () {
+    loadStoredData();
+    initializeMap();
+};
+
+function loadStoredData() {
+    const storedData = localStorage.getItem("proxyData");
+    if (storedData) {
+        updateTable(JSON.parse(storedData));
+    }
+}
+
+function initializeMap() {
+    const storedMap = localStorage.getItem("mapData");
+
+    if (storedMap) {
+        const mapData = JSON.parse(storedMap);
+        initMap(mapData.latitude, mapData.longitude, mapData.zoom);
+        loadStoredMarker();
+    } else {
+        initMap(-6.200000, 106.816666, 5);
+    }
+}
+
+function loadStoredMarker() {
+    const storedMarker = localStorage.getItem("markerData");
+    if (storedMarker) {
+        const markerData = JSON.parse(storedMarker);
+        addMarkerToMap(markerData.latitude, markerData.longitude, markerData.data);
+    }
+}
+
+async function checkMultipleProxies() {
+    const ipPorts = document.getElementById("ipInput").value.trim().split('\n').map(ip => ip.trim());
+
+    if (ipPorts.length === 0) {
+        Swal.fire({
+            icon: 'warning',
+            title: 'Peringatan!',
+            text: 'Masukkan IP:Port terlebih dahulu!',
+            confirmButtonText: 'OK',
+            background: '#000',
+            color: '#00FF00',
+            iconColor: '#00FF00',
+            confirmButtonColor: '#4CAF50'
+        });
+        return;
+    }
+
+    document.getElementById("loading").style.display = "block";
+
+    // Iterate through the list of IP:Port and fetch data for each
+    for (let ipPort of ipPorts) {
+        try {
+            const apiUrl = `https://cors.geo-project.workers.dev/?url=https://api.checker-ip.web.id/check?ip=${encodeURIComponent(ipPort)}`;
+            const response = await fetch(apiUrl);
+
+            if (!response.ok) {
+                throw new Error(`API response not ok: ${response.status}`);
+            }
+
+            const data = await response.json();
+
+            if (data.error) {
+                Swal.fire({
+                    icon: 'error',
+                    title: 'Error!',
+                    text: `Terjadi kesalahan saat mengambil data dari API: ${data.error}`,
+                    confirmButtonText: 'OK',
+                    background: '#000',
+                    color: '#FF0000',
+                    iconColor: '#FF0000',
+                    confirmButtonColor: '#FF0000'
+                });
+                return;
+            }
+
+            // Simpan data dan update tabel
+            updateTable(data);
+            localStorage.setItem("proxyData", JSON.stringify(data));
+
+            // Update the map with new marker
+            if (data.latitude && data.longitude) {
+                updateMap(data.latitude, data.longitude, data);
+            }
+        } catch (error) {
+            console.error("Error fetching proxy data:", error);
+            Swal.fire({
+                icon: 'error',
+                title: 'Error!',
+                text: 'Terjadi kesalahan saat mengambil data dari API.',
+                confirmButtonText: 'OK',
+                background: '#000',
+                color: '#FF0000',
+                iconColor: '#FF0000',
+                confirmButtonColor: '#FF0000'
+            });
+        }
+    }
+
+    document.getElementById("loading").style.display = "none";
+}
+
+function initMap(lat, lon, zoom) {
+    if (!map) {
+        map = L.map('map').setView([lat, lon], zoom);
+
+        L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+            attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">Geo Project</a> IP CF Checker'
+        }).addTo(map);
+    }
+}
+
+function updateMap(lat, lon, data) {
+    if (!map) {
+        initMap(lat, lon, 7);
+    } else {
+        map.setView([lat, lon], 7);
+
+        map.eachLayer(function (layer) {
+            if (layer instanceof L.Marker) map.removeLayer(layer);
+        });
+    }
+
+    addMarkerToMap(lat, lon, data);
+    saveMapData(lat, lon, 7, data.proxy, data.isp, data.asn);
+}
+
+function saveMapData(lat, lon, zoom, proxy = null, isp = null, asn = null) {
+    localStorage.setItem("mapData", JSON.stringify({ latitude: lat, longitude: lon, zoom: zoom }));
+
+    const markerData = { latitude: lat, longitude: lon };
+    if (proxy || isp || asn) {
+        markerData.data = { proxy, isp, asn };
+    }
+
+    localStorage.setItem("markerData", JSON.stringify(markerData));
+}
+
+function addMarkerToMap(lat, lon, data) {
+    var icon1 = L.icon({
+        iconUrl: 'https://cdn-icons-png.flaticon.com/512/252/252025.png',
+        iconSize: [35, 35],
+        iconAnchor: [15, 35],
+        popupAnchor: [0, -30]
+    });
+
+    var marker = L.marker([lat, lon], { icon: icon1 }).addTo(map)
+        .bindPopup(`<b>📍 Lokasi</b><br>
+            <b>Proxy:</b> ${data.proxy || '-'}<br>
+            <b>ISP:</b> ${data.isp || '-'}<br>
+            <b>ASN:</b> ${data.asn || '-'}<br>
+            <b>Latitude:</b> ${lat}<br>
+            <b>Longitude:</b> ${lon}`)
+        .openPopup();
+}
+
+function updateTable(data) {
+    const tbody = document.getElementById("resultBody");
+
+    // Tambahkan data IP baru ke tabel setiap kali
+    const row = document.createElement('tr');
+    row.innerHTML = `
+    <td>${data.ip || '-'}</td>
+    <td style="text-align: center;">
+        ${data.status === "ACTIVE" 
+            ? '<i class="fas fa-check-circle" style="color: #00FF00; font-size: 24px;"></i>' 
+            : '<i class="fas fa-times-circle" style="color: red; font-size: 24px;"></i>'}
+    </td>
+    <td>${data.port || '-'}</td>
+    <td>${data.isp || '-'}</td>
+    <td>${data.delay || '-'}</td>
+`;
+    tbody.appendChild(row);
+}
+</script>
+</body>
+</html>
