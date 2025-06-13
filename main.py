@@ -13,6 +13,11 @@ async def homepage(request: Request):
     template = env.get_template("index.html")
     return template.render()
 
+@app.get("/checker", response_class=HTMLResponse) # Tambahkan endpoint ini
+async def random_ip_page(request: Request):
+    template = env.get_template("checker.html")
+    return template.render()
+
 @app.get("/check")
 async def check_proxy_url_endpoint(
     request: Request,
@@ -46,6 +51,7 @@ async def check_proxy_url_endpoint(
                 "delay": f"{round(connection_time)} ms",
                 "latitude": latitude,
                 "longitude": longitude,
+                "colo": colo,
             }
         else:
             response_data = {
