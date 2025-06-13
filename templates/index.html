@@ -12,15 +12,15 @@
 
   <!-- Open Graph Meta Tags (Telegram, Facebook, dll) -->
   <meta property="og:title" content="Desbar Browser - Daftar Proxy Aman & Cepat" />
-  <meta property="og:description" content="Akses berbagai proxy VLESS, VMess, Trojan, dan Shadowsocks dengan mudah dan cepat." />
+  <meta property="og:description" content="Akses berbagai proxy VLESS, Trojan, dan Shadowsocks dengan mudah dan cepat." />
   <meta property="og:image" content="https://raw.githubusercontent.com/jaka2m/mau/refs/heads/kepo/a.png" />
-  <meta property="og:url" content="https://joss.checker-ip.xyz/" />
+  <meta property="og:url" content="https://cobay.vercel.app/" />
   <meta property="og:type" content="website" />
 
   <!-- Twitter Card Meta Tags -->
   <meta name="twitter:card" content="summary_large_image">
   <meta name="twitter:title" content="Desbar Browser - Daftar Proxy Aman & Cepat">
-  <meta name="twitter:description" content="Akses berbagai proxy VLESS, VMess, Trojan, dan Shadowsocks dengan mudah dan cepat.">
+  <meta name="twitter:description" content="Akses berbagai proxy VLESS, Trojan, dan Shadowsocks dengan mudah dan cepat.">
   <meta name="twitter:image" content="https://raw.githubusercontent.com/jaka2m/mau/refs/heads/kepo/a.png">
 
   <!-- Favicon -->
@@ -628,11 +628,10 @@ th:last-child, td:last-child {
   <div class="modal-content">
     <i class="fa-solid fa-xmark close" onclick="closeModal('protocolModal')"></i>
     <div class="modal-header">Pilih Protokol</div>
-    <div class="config-buttons">
-      <button onclick="selectProtocol('vmess')">VMESS</button>
+    <div class="config-buttons" style="display: flex; justify-content: center; align-items: center; flex-wrap: wrap; gap: 10px;">
       <button onclick="selectProtocol('vless')">VLESS</button>
       <button onclick="selectProtocol('trojan')">TROJAN</button>
-      <button onclick="selectProtocol('ss')">SHADOW</button>
+      <button onclick="selectProtocol('ss')">SHADOWSOCKS</button>
     </div>
   </div>
 </div>
@@ -863,7 +862,7 @@ function confirmBugSelection() {
 function copyConfig(tlsType) {
   const { ip, port, country, isp, protocol, bugMode = 'normal', selectedBug = '' } = currentConfigType;
   const uuid = 'f282b878-8711-45a1-8c69-5564172123c1';
-  const baseDomain = 'joss.checker-ip.xyz';
+  const baseDomain = 'joss.krikkrik.tech';
 
   const standardPort = tlsType === 'tls' ? 443 : 80;
   const displayPort = standardPort;
