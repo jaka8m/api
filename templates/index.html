@@ -1,0 +1,1079 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>GEO - PROJECT | WEB</title>
+
+  <!-- Font & CSS -->
+  <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;500;700;900&family=Rajdhani:wght@300;400;500;600;700&family=Share+Tech+Mono&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdn.datatables.net/1.13.6/css/jquery.dataTables.min.css" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" />
+
+  <!-- Open Graph Meta Tags (Telegram, Facebook, dll) -->
+  <meta property="og:title" content="Desbar Browser - Daftar Proxy Aman & Cepat" />
+  <meta property="og:description" content="Akses berbagai proxy VLESS, VMess, Trojan, dan Shadowsocks dengan mudah dan cepat." />
+  <meta property="og:image" content="https://raw.githubusercontent.com/jaka2m/mau/refs/heads/kepo/a.png" />
+  <meta property="og:url" content="https://joss.checker-ip.xyz/" />
+  <meta property="og:type" content="website" />
+
+  <!-- Twitter Card Meta Tags -->
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="Desbar Browser - Daftar Proxy Aman & Cepat">
+  <meta name="twitter:description" content="Akses berbagai proxy VLESS, VMess, Trojan, dan Shadowsocks dengan mudah dan cepat.">
+  <meta name="twitter:image" content="https://raw.githubusercontent.com/jaka2m/mau/refs/heads/kepo/a.png">
+
+  <!-- Favicon -->
+  <link rel="icon" href="https://raw.githubusercontent.com/jaka2m/mau/refs/heads/kepo/G.png" type="image/x-icon" />
+  <style>
+    :root {
+    --primary: #00ff88;
+    --secondary: #00ffff;
+    --accent: #ff00ff;
+    --dark: #080c14;
+    --darker: #040608;
+    --light: #e0ffff;
+    --card-bg: rgba(8, 12, 20, 0.95);
+    --glow: 0 0 20px rgba(0, 255, 136, 0.3);
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Space Grotesk', sans-serif;
+}
+
+body {
+  background: url('https://raw.githubusercontent.com/jaka2m/mau/refs/heads/kepo/backround.png') no-repeat center center fixed;
+  background-size: cover;
+  justify-content: center;
+  align-items: center;
+  background-size: 300% 300%; /* Untuk animasi gradient */
+  color: #fff; /* Teks putih agar kontras */
+  margin: 0;
+  font-family: Arial, sans-serif; /* Font sederhana dan bersih */
+  animation: rainbowBackground 10s infinite; /* Animasi bergerak */
+}
+
+/* Animasi untuk background */
+@keyframes rainbowBackground {
+  0% { background-position: 0% 50%; }
+  50% { background-position: 100% 50%; }
+  100% { background-position: 0% 50%; }
+}
+@keyframes moveColors {
+  100% {
+    background-position: -200%; /* Mulai dari luar kiri */
+  }
+  0% {
+    background-position: 200%; /* Bergerak ke kanan */
+  }
+}
+
+h2 {
+    font-family: "Orbitron", sans-serif;
+  color: #00ff00;
+  text-align: center;
+  margin: 0;
+  padding: 20px;
+  position: sticky;
+  top: 0;
+  z-index: 1000;
+  animation: titlePulse 3s ease-in-out infinite;
+}
+
+h1 {
+      font-family: "Orbitron", sans-serif;
+      padding-top: 10px;
+      margin-top: 10px;
+      color: black;
+            text-align: center;
+            font-size: 5vw;
+            font-weight: bold;
+            text-shadow: 
+                0 0 5px rgba(0, 123, 255, 0.8),
+                0 0 10px rgba(0, 123, 255, 0.8),
+                0 0 20px rgba(0, 123, 255, 0.8),
+                0 0 30px rgba(0, 123, 255, 0.8),
+                0 0 40px rgba(0, 123, 255, 0.8);
+    
+         background: linear-gradient(45deg, var(--primary), var(--secondary), var(--dark));
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: transparent;
+        text-shadow: 0 0 30px #000;
+        position: relative;
+        animation: titlePulse 3s ease-in-out infinite;
+    }
+
+      footer {
+      box-sizing: border-box;
+      background-color: ;
+      color: white;
+      text-align: center;
+      border-radius: 10px;
+      padding: 0 20px;
+      position: fixed;
+      width: 100%;
+      left: 0;
+      right: 2px;
+      pointer-events: none;
+      z-index: 10;
+    }
+
+    footer {
+      bottom: 0;
+    }
+    
+.table-container {
+  background: linear-gradient(135deg, rgba(0, 255, 0, 0.15), rgba(0, 100, 0, 0.25));
+  border-radius: 16px;
+  overflow-x: auto;
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  border: 1px solid rgba(0, 255, 0, 0.2);
+}
+
+table.dataTable {
+    background-color: rgba(20, 40, 60, 0.2);
+    border-collapse: collapse;
+    width: 100%;
+    border-radius: 12px;
+    overflow: hidden;
+    color: #e0f7ff;
+}
+
+table.dataTable thead th {
+    background-color: rgba(50, 80, 120, 0.4);
+    color: #aeeeff;
+    text-align: ;
+    padding: 12px;
+    backdrop-filter: blur(5px);
+}
+
+table.dataTable tbody td {
+    background-color: rgba(30, 60, 90, 0.2);
+    color: #eaf6ff;
+    text-align: center;
+    padding: 12px;
+    border-top: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.status-block {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 4px;
+}
+
+.status {
+    font-weight: bold;
+    font-size: 14px;
+    text-align: center;
+}
+
+.status.active {
+    color: #00ff66;
+}
+
+.status.inactive {
+    color: #ff4d4d;
+}
+
+.status.error {
+    color: #ffcc00;
+}
+
+.status i {
+    font-size: 24px;
+    display: block;
+    text-align: center;
+    margin: 0 auto;
+}
+
+.delay {
+    font-size: 12px;
+    color: #ccc;
+    text-align: center;
+}
+
+.modal {
+    display: none;
+    position: fixed;
+    z-index: 99;
+    left: 0; top: 0;
+    width: 100%; height: 100%;
+    background-color: rgba(0, 0, 0, 0.7);
+    justify-content: center;
+    align-items: center;
+    
+}
+
+.modal.show {
+    display: flex;
+    
+}
+
+.modal-content {
+  background: rgba(255, 255, 255, 0.05); /* transparan */
+  color: #ffffff;
+  padding: 20px;
+  width: 90%;
+  max-width: 400px;
+  border-radius: 16px;
+
+  backdrop-filter: blur(15px);
+  -webkit-backdrop-filter: blur(15px);
+  box-shadow:
+    0 8px 24px rgba(0, 0, 0, 0.4),
+    inset 0 0 10px rgba(255, 255, 255, 0.05);
+
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  animation: slideIn 0.3s ease forwards;
+  transition: all 0.3s ease;
+}
+
+.modal-content.hide {
+  animation: slideOut 0.3s ease forwards;
+}
+
+@keyframes slideIn {
+    from {
+        opacity: 0;
+        transform: translateX(-100%);
+    }
+    to {
+        opacity: 1;
+        transform: translateX(0);
+    }
+}
+
+@keyframes slideOut {
+    from {
+        opacity: 1;
+        transform: translateX(0);
+    }
+    to {
+        opacity: 0;
+        transform: translateX(-100%);
+    }
+}
+
+.modal-header {
+  font-size: 18px;
+  margin-bottom: 10px;
+  color: #00ff00; /* hijau neon */
+  font-weight: bold;
+  text-align: center;
+  background: rgba(0, 255, 0, 0.05); /* latar hijau sangat transparan */
+  padding: 12px;
+  border-radius: 8px;
+  box-shadow: 0 0 6px rgba(0, 255, 0, 0.4);
+  font-family: 'Courier New', monospace;
+}
+
+.config-buttons {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 10px;
+  margin-top: 15px;
+  background: rgba(0, 255, 0, 0.05); /* hijau transparan */
+  border: 1px solid rgba(0, 255, 0, 0.2); /* garis hijau tipis */
+  border-radius: 12px;
+  padding: 15px;
+  backdrop-filter: blur(10px);
+  box-shadow: 0 0 16px rgba(0, 255, 0, 0.2); /* glow hijau */
+  color: #00ff00;
+  font-family: 'Courier New', monospace;
+}
+
+.config-buttons button {
+  padding: 8px 16px;
+  background: rgba(0, 255, 0, 0.1); /* hijau transparan */
+  color: #00ff00;
+  border: 1px solid rgba(0, 255, 0, 0.4);
+  border-radius: 8px;
+  font-weight: bold;
+  cursor: pointer;
+  font-size: 14px;
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
+  box-shadow: 0 4px 20px rgba(0, 255, 0, 0.2);
+  transition: background 0.3s ease, box-shadow 0.3s ease;
+  font-family: 'Courier New', monospace;
+}
+
+.config-buttons button:hover {
+  background: rgba(0, 255, 0, 0.2);
+  box-shadow: 0 0 12px rgba(0, 255, 0, 0.5);
+}
+
+.close {
+    float: right;
+    font-size: 20px;
+    cursor: pointer;
+}
+
+    button {
+    padding: 6px 12px;
+    margin: 4px;
+    border: none;
+    border-radius: 6px;
+    background-color: #00ff00;
+    color: black;
+    font-weight: bold;
+    cursor: pointer;
+    transition: opacity 0.3s ease, background-color 0.3s ease, box-shadow 0.3s ease;
+    font-family: 'Courier New', Courier, monospace;
+}
+
+button:hover {
+    background-color: #00cc00;
+    }
+
+button:disabled {
+    opacity: 0.6;
+    background-color: #444;
+    cursor: not-allowed;
+    box-shadow: none;
+}
+
+.swal2-dark.compact-popup {
+    font-size: 13px;
+    line-height: 1.2;
+}
+
+.swal2-small-title {
+    font-size: 14px !important;
+}
+
+.quantum-container {
+    max-width: 1200px;
+    margin: 2rem auto;
+    padding: 2rem;
+    perspective: 1000px;
+}
+
+/* Mobile Responsiveness */
+@media (max-width: 768px) {
+    .quantum-container {
+        padding: 0.5rem;
+        margin: 0.5rem;
+    }
+
+    .quantum-table {
+        width: 100%;
+        min-width: 800px;
+        border-collapse: separate;
+        border-spacing: 0 8px;
+    }
+    
+    th, td {
+  padding: 8px;
+  text-align: left;
+  border-bottom: 1px solid #444;  /* Garis horizontal */
+  border-right: 1px solid #444;   /* Garis vertikal */
+}
+
+th:last-child, td:last-child {
+  border-right: none; /* Hilangkan garis di paling kanan */
+}
+
+    .quantum-table th {
+        background: rgba(0, 255, 136, 0.1);
+        color: var(--primary);
+        padding: 1.2rem;
+        font-family: 'Rajdhani', sans-serif;
+        font-weight: 600;
+        font-size: 1.1rem;
+        text-transform: uppercase;
+        letter-spacing: 2px;
+        border-bottom: 2px solid var(--primary);
+        white-space: nowrap;
+        position: sticky;
+        top: 0;
+        z-index: 10;
+    }
+
+    .quantum-table td {
+        padding: 1rem;
+        background: rgba(0, 255, 136, 0.03);
+        border: none;
+        transition: all 0.3s ease;
+    }
+
+    .quantum-table tr {
+        transition: all 0.3s ease;
+    }
+
+    .quantum-table tr:hover td {
+        background: rgba(0, 255, 136, 0.08);
+        transform: scale(1.01);
+        box-shadow: 0 5px 15px rgba(0, 255, 136, 0.1);
+    }
+
+    .check-btn {
+        padding: 6px 12px;
+        background-color: #00ff9f;
+        color: #000;
+        border: none;
+        cursor: pointer;
+        font-size: 14px;
+    }
+
+  .status-block .spinner {
+  width: 30px;
+  height: 30px;
+  border: 4px solid rgba(0, 255, 0, 0.1); /* hijau transparan */
+  border-top: 4px solid #00ff00; /* hijau neon */
+  border-radius: 50%;
+  animation: spin 1s linear infinite;
+  margin-right: 8px;
+  display: inline-block;
+  vertical-align: middle;
+}
+
+@keyframes spin {
+  0% { transform: rotate(0deg); }
+  100% { transform: rotate(360deg); }
+}
+
+    .status {
+        position: relative;
+    }
+
+    .status button.check-btn {
+        display: inline-block;
+    }
+
+    .status .spinner {
+        display: none;
+    }
+}
+
+.delay {
+  font-size: 10px;
+  color: yellow;
+}
+
+@keyframes pulse {
+  0%, 100% {
+    opacity: 1;
+    transform: scale(1);
+    filter: drop-shadow(0 0 5px lime);
+  }
+  50% {
+    opacity: 0.6;
+    transform: scale(1.1);
+    filter: drop-shadow(0 0 15px lime);
+  }
+}
+
+.status.active {
+  color: #00ff00; /* Hijau terang */
+  animation: pulse 1s infinite;
+}
+
+#bugSelect {
+  background-color: rgba(0, 255, 0, 0.05); /* hijau transparan */
+  border: 1px solid rgba(0, 255, 0, 0.4);  /* hijau neon semi transparan */
+  color: #00ff00; /* hijau neon */
+  border-radius: 6px;
+  padding: 8px;
+  font-size: 14px;
+  backdrop-filter: blur(6px);
+  -webkit-backdrop-filter: blur(6px);
+  box-shadow: 0 0 6px rgba(0, 255, 0, 0.2);
+}
+
+#bugSelect option {
+  background-color: rgba(0, 50, 0, 0.8); /* hijau gelap */
+  color: #00ff00; /* hijau neon */
+}
+
+.status-box {
+  display: flex;
+  justify-content: center;
+  gap: 0.5rem;
+  padding: 0.5rem;
+  border-radius: 8px;
+  
+  color: #0f0;
+  flex-wrap: wrap;
+  text-align: center;
+  backdrop-filter: blur(6px);
+  -webkit-backdrop-filter: blur(6px);
+}
+
+.status-item {
+  min-width: 90px;
+  padding: 0.5rem;
+  border: 1px solid rgba(0, 255, 0, 0.6);
+  border-radius: 6px;
+  
+  margin: 0.25rem;
+  transition: background-color 0.3s ease;
+}
+
+.status-item:hover {
+  box-shadow: inset 0 0 8px #0f0, 0 0 10px #0f0;
+}
+
+.status-item div {
+  font-size: 0.75rem;
+  font-weight: 600;
+  opacity: 0.8;
+}
+
+.status-item h3 {
+  font-size: 1.1rem;
+  margin-top: 0.2rem;
+}
+
+.close {
+  position: absolute;
+  top: 4px;
+  right: 4px;
+  width: 24px;
+  height: 24px;
+  background-color: rgba(0,0,0,0.15);
+  border-radius: 50%;
+  color: #fff;
+  font-size: 16px;
+  line-height: 24px;
+  text-align: center;
+  cursor: pointer;
+  transition: background-color 0.3s ease, transform 0.2s ease;
+  box-shadow: 0 1px 4px rgba(0,0,0,0.3);
+  z-index: 1001;
+  padding: 0;
+  margin: 0;
+}
+
+.close:hover {
+  background-color: #ff4444;
+  color: white;
+  transform: scale(1.2);
+}
+
+/* Styling tombol Oke ala Matrix hijau */
+.swal2-confirm-custom {
+  background: #0f380f; /* hijau gelap */
+  color: #00ff00; /* hijau neon terang */
+  font-weight: 700;
+  font-family: 'Courier New', Courier, monospace;
+  font-size: 16px;
+  padding: 10px 24px;
+  border-radius: 6px;
+  border: 2px solid #00ff00;
+  cursor: pointer;
+  transition: box-shadow 0.3s ease, transform 0.2s ease;
+  user-select: none;
+  text-shadow:
+    0 0 5px #00ff00,
+    0 0 10px #00ff00;
+}
+
+.swal2-confirm-custom:hover {
+  box-shadow:
+    0 0 10px #00ff00,
+    0 0 20px #00ff00,
+    0 0 30px #00ff00,
+    0 0 40px #00ff00;
+  transform: scale(1.05);
+}
+
+
+  </style>
+</head>
+<body>  
+  <footer class="footer">
+    <h1>&copy; 2025 FREE VPN CF</h1>
+  </footer>
+  <div class="quantum-container">
+    <h2>GEO PROJECT</h2>
+    <div class="status-box">
+      <div class="status-item">
+        <div>Total</div>
+        <h3 id="total">0</h3>
+      </div>
+      <div class="status-item">
+        <div>Active</div>
+        <h3 id="active">0</h3>
+      </div>
+      <div class="status-item">
+        <div>Dead</div>
+        <h3 id="dead">0</h3>
+      </div>
+    </div>
+
+    <div class="table-container">
+      <table id="proxyTable" class="display">
+        <thead>
+          <tr>
+            <th>IP PORT</th>
+            <th>STATUS</th>
+            <th>COUNTRY</th>
+            <th>ISP</th>
+            <th>ACTION</th>
+          </tr>
+        </thead>
+        <tbody></tbody>
+      </table>
+    </div>
+    <br>
+
+    <!-- Modal Protokol -->
+<div id="protocolModal" class="modal">
+  <div class="modal-content">
+    <i class="fa-solid fa-xmark close" onclick="closeModal('protocolModal')"></i>
+    <div class="modal-header">Pilih Protokol</div>
+    <div class="config-buttons">
+      <button onclick="selectProtocol('vmess')">VMESS</button>
+      <button onclick="selectProtocol('vless')">VLESS</button>
+      <button onclick="selectProtocol('trojan')">TROJAN</button>
+      <button onclick="selectProtocol('ss')">SHADOW</button>
+    </div>
+  </div>
+</div>
+
+    <!-- Modal Bug Selection -->
+    <div id="bugModal" class="modal">
+      <div class="modal-content">
+        <span class="close" onclick="closeModal('bugModal')">&times;</span>
+        <div class="modal-header">Pilih Bug Mode dan Bug Host</div>
+        <div style="margin-bottom: 15px;">
+          <label><input type="radio" name="bugMode" value="normal" checked> Normal</label>
+          <label style="margin-left: 20px;"><input type="radio" name="bugMode" value="wildcard"> Wildcard</label>
+        </div>
+        <select id="bugSelect" style="width:100%;padding:8px;font-size:14px;">
+          <option value="business.blibli.com">business.blibli.com</option>
+                    <option value="ava.game.naver.com">ava.game.naver.com</option>
+                    <option value="graph.instagram.com">graph.instagram.com</option>
+                    <option value="quiz.int.vidio.com">quiz.int.vidio.com</option>
+                    <option value="live.iflix.com">live.iflix.com</option>
+                    <option value="support.zoom.us">support.zoom.us</option>
+                    <option value="blog.webex.com">blog.webex.com</option>
+                    <option value="investors.spotify.com">investors.spotify.com</option>
+                    <option value="cache.netflix.com">cache.netflix.com</option>
+                    <option value="zaintest.vuclip.com">zaintest.vuclip.com</option>
+                    <option value="ads.ruangguru.com">io.ruangguru.com</option>
+                    <option value="api.midtrans.com">api.midtrans.com</option>
+                    <option value="investor.fb.com">investor.fb.com</option>
+                    <option value="bakrie.ac.id">bakrie.ac.id</option>
+        </select>
+        <div style="text-align: right; margin-top: 15px;">
+          <button onclick="confirmBugSelection()">Pilih</button>
+        </div>
+      </div>
+    </div>
+
+    <!-- Modal TLS -->
+    <div id="tlsModal" class="modal">
+      <div class="modal-content">
+        <span class="close" onclick="closeModal('tlsModal')">&times;</span>
+        <div class="modal-header">Pilih TLS / Non-TLS</div>
+        <div class="config-buttons">
+          <button onclick="copyConfig('tls')">Copy TLS</button>
+          <button onclick="copyConfig('nontls')">Copy NTLS</button>
+        </div>
+      </div>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
+    <script src="https://cdn.datatables.net/1.13.6/js/jquery.dataTables.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/qrcodejs/1.0.0/qrcode.min.js"></script>
+    <script>
+ let total = 0, active = 0, dead = 0;
+let currentConfigType = {};
+
+async function checkStatus(ip, port, container) {
+  const corsProxy = 'https://cors.checker-ip.web.id/?url=';
+  const url = `${corsProxy}https://api.checker-ip.web.id/check?ip=${ip}:${port}`;
+
+  try {
+    const response = await fetch(url);
+    if (!response.ok) throw new Error('Network response not ok');
+    const data = await response.json();
+    const status = data.status === 'ACTIVE' ? 'active' : 'inactive';
+    const icon = status === 'active' ? '<i class="fas fa-check-circle"></i>' : '<i class="fas fa-times-circle"></i>';
+    const delay = data.delay || 0;
+
+    container.innerHTML = `<div class="status ${status}">${icon}</div><span class="delay">(${delay})</span>`;
+
+    if (status === 'active') active++;
+    else dead++;
+    updateStatusCount();
+  } catch (error) {
+    console.error('Error checking status:', error);
+    container.innerHTML = `<div class="status error">&#10007; DEAD</div>`;
+    dead++;
+    updateStatusCount();
+  }
+}
+
+function updateStatusCount() {
+  $('#total').text(total);
+  $('#active').text(active);
+  $('#dead').text(dead);
+}
+
+async function loadProxies() {
+  try {
+    const url = 'https://raw.githubusercontent.com/jaka2m/botak/refs/heads/main/cek/proxyList.txt';
+    const res = await fetch(url);
+    if (!res.ok) throw new Error('Failed to fetch proxy list');
+    const text = await res.text();
+    const lines = text.trim().split('\n');
+
+    const countryMap = {
+  AF: "Afghanistan", AL: "Albania", DZ: "Algeria", AS: "American Samoa", AD: "Andorra",
+  AO: "Angola", AI: "Anguilla", AQ: "Antarctica", AG: "Antigua and Barbuda", AR: "Argentina",
+  AM: "Armenia", AW: "Aruba", AU: "Australia", AT: "Austria", AZ: "Azerbaijan",
+  BS: "Bahamas", BH: "Bahrain", BD: "Bangladesh", BB: "Barbados", BY: "Belarus",
+  BE: "Belgium", BZ: "Belize", BJ: "Benin", BM: "Bermuda", BT: "Bhutan",
+  BO: "Bolivia", BA: "Bosnia and Herzegovina", BW: "Botswana", BR: "Brazil", BN: "Brunei",
+  BG: "Bulgaria", BF: "Burkina Faso", BI: "Burundi", KH: "Cambodia", CM: "Cameroon",
+  CA: "Canada", CV: "Cape Verde", KY: "Cayman Islands", CF: "Central African Republic", TD: "Chad",
+  CL: "Chile", CN: "China", CO: "Colombia", KM: "Comoros", CG: "Congo (Brazzaville)",
+  CD: "Congo (Kinshasa)", CR: "Costa Rica", HR: "Croatia", CU: "Cuba", CY: "Cyprus",
+  CZ: "Czech Republic", DK: "Denmark", DJ: "Djibouti", DM: "Dominica", DO: "Dominican Republic",
+  EC: "Ecuador", EG: "Egypt", SV: "El Salvador", GQ: "Equatorial Guinea", ER: "Eritrea",
+  EE: "Estonia", ET: "Ethiopia", FJ: "Fiji", FI: "Finland", FR: "France",
+  GA: "Gabon", GM: "Gambia", GE: "Georgia", DE: "Germany", GH: "Ghana",
+  GR: "Greece", GD: "Grenada", GT: "Guatemala", GN: "Guinea", GW: "Guinea-Bissau",
+  GY: "Guyana", HT: "Haiti", HN: "Honduras", HK: "Hong Kong", HU: "Hungary",
+  IS: "Iceland", IN: "India", ID: "Indonesia", IR: "Iran", IQ: "Iraq",
+  IE: "Ireland", IL: "Israel", IT: "Italy", JM: "Jamaica", JP: "Japan",
+  JO: "Jordan", KZ: "Kazakhstan", KE: "Kenya", KI: "Kiribati", KP: "North Korea",
+  KR: "South Korea", KW: "Kuwait", KG: "Kyrgyzstan", LA: "Laos", LV: "Latvia",
+  LB: "Lebanon", LS: "Lesotho", LR: "Liberia", LY: "Libya", LI: "Liechtenstein",
+  LT: "Lithuania", LU: "Luxembourg", MO: "Macao", MK: "North Macedonia", MG: "Madagascar",
+  MW: "Malawi", MY: "Malaysia", MV: "Maldives", ML: "Mali", MT: "Malta",
+  MH: "Marshall Islands", MR: "Mauritania", MU: "Mauritius", MX: "Mexico", FM: "Micronesia",
+  MD: "Moldova", MC: "Monaco", MN: "Mongolia", ME: "Montenegro", MA: "Morocco",
+  MZ: "Mozambique", MM: "Myanmar", NA: "Namibia", NR: "Nauru", NP: "Nepal",
+  NL: "Netherlands", NZ: "New Zealand", NI: "Nicaragua", NE: "Niger", NG: "Nigeria",
+  NO: "Norway", OM: "Oman", PK: "Pakistan", PW: "Palau", PS: "Palestine",
+  PA: "Panama", PG: "Papua New Guinea", PY: "Paraguay", PE: "Peru", PH: "Philippines",
+  PL: "Poland", PT: "Portugal", QA: "Qatar", RO: "Romania", RU: "Russia",
+  RW: "Rwanda", KN: "Saint Kitts and Nevis", LC: "Saint Lucia", VC: "Saint Vincent and the Grenadines", WS: "Samoa",
+  SM: "San Marino", ST: "Sao Tome and Principe", SA: "Saudi Arabia", SN: "Senegal", RS: "Serbia",
+  SC: "Seychelles", SL: "Sierra Leone", SG: "Singapore", SK: "Slovakia", SI: "Slovenia",
+  SB: "Solomon Islands", SO: "Somalia", ZA: "South Africa", SS: "South Sudan", ES: "Spain",
+  LK: "Sri Lanka", SD: "Sudan", SR: "Suriname", SE: "Sweden", CH: "Switzerland",
+  SY: "Syria", TW: "Taiwan", TJ: "Tajikistan", TZ: "Tanzania", TH: "Thailand",
+  TL: "Timor-Leste", TG: "Togo", TO: "Tonga", TT: "Trinidad and Tobago", TN: "Tunisia",
+  TR: "Turkey", TM: "Turkmenistan", TV: "Tuvalu", UG: "Uganda", UA: "Ukraine",
+  AE: "United Arab Emirates", GB: "United Kingdom", US: "United States", UY: "Uruguay", UZ: "Uzbekistan",
+  VU: "Vanuatu", VE: "Venezuela", VN: "Vietnam", YE: "Yemen", ZM: "Zambia",
+  ZW: "Zimbabwe"
+};
+
+    // Reset status counters
+    total = lines.length;
+    active = 0;
+    dead = 0;
+
+    // Simpan lines global untuk event handler tombol Config (lebih aman daripada onclick inline)
+    window.proxyLines = lines;
+
+    const rows = lines.map((line, index) => {
+      const parts = line.split(',');
+      if (parts.length < 4) {
+        // Jika format salah, isi default agar tidak error
+        return ['Invalid data', '-', '-', '-', '-'];
+      }
+
+      const [ip, port, countryCode, isp] = parts;
+      const code = countryCode?.trim().toUpperCase() || '-';
+      const countryName = countryMap[code] || code;
+      const flag = code && code !== '-' 
+        ? `<img src="https://flagcdn.com/w40/${code.toLowerCase()}.png" style="height:16px; margin-right:5px;">` 
+        : '';
+
+      return [
+        `${ip}:${port}`,
+        `<div class="status-block" data-checked="false"><div class="spinner"></div></div>`,
+        `${flag} ${countryName}`,
+        isp || '-',
+        `<button class="config-btn" data-index="${index}">Config</button>`
+      ];
+    });
+
+    // Inisialisasi atau update DataTable
+    const table = $('#proxyTable').DataTable();
+    table.clear();
+    table.rows.add(rows);
+    table.draw();
+
+    updateStatusCount();
+
+    // Cek keberadaan fungsi checkVisibleRows sebelum panggil
+    if (typeof checkVisibleRows === 'function') {
+      checkVisibleRows();
+      table.off('draw').on('draw', () => {
+        checkVisibleRows();
+      });
+    }
+
+  } catch (error) {
+    console.error('Failed to load proxies:', error);
+    alert('Gagal memuat daftar proxy.');
+  }
+}
+
+// Event delegation untuk tombol Config agar tidak pakai onclick inline
+$('#proxyTable tbody').on('click', '.config-btn', function () {
+  const index = $(this).data('index');
+  if (typeof window.proxyLines === 'undefined' || !window.proxyLines[index]) {
+    console.error('Data proxy tidak ditemukan untuk index:', index);
+    return;
+  }
+  const [ip, port, countryCode, isp] = window.proxyLines[index].split(',');
+  const code = countryCode?.trim().toUpperCase() || '-';
+  openProtocolModal(ip, port, code, isp);
+});
+
+function openProtocolModal(ip, port, country, isp) {
+  currentConfigType = { ip, port, country, isp };
+  openModal('protocolModal');
+}
+
+function selectProtocol(protocol) {
+  currentConfigType.protocol = protocol;
+  closeModal('protocolModal');
+  openModal('bugModal');
+}
+
+function confirmBugSelection() {
+  const bugMode = document.querySelector('input[name="bugMode"]:checked');
+  const bugSelect = document.getElementById('bugSelect');
+  if (!bugMode || !bugSelect) {
+    alert('Mohon pilih opsi bug dengan benar.');
+    return;
+  }
+  currentConfigType.bugMode = bugMode.value;
+  currentConfigType.selectedBug = bugSelect.value;
+  closeModal('bugModal');
+  openModal('tlsModal');
+}
+
+function copyConfig(tlsType) {
+  const { ip, port, country, isp, protocol, bugMode = 'normal', selectedBug = '' } = currentConfigType;
+  const uuid = 'f282b878-8711-45a1-8c69-5564172123c1';
+  const baseDomain = 'joss.checker-ip.xyz';
+
+  const standardPort = tlsType === 'tls' ? 443 : 80;
+  const displayPort = standardPort;
+  const path = `/Geo-Project/${ip}-${port}`;
+
+  const tag = `${country} - ${isp}`.replace(/ /g, '%20');
+  const tlsLabel = tlsType === 'tls' ? 'TLS' : 'NTLS';
+  const tlsValue = tlsType === 'tls' ? 'tls' : 'none';
+
+  let address = baseDomain;
+  let host = baseDomain;
+  let sni = baseDomain;
+
+  if (bugMode === 'wildcard' && selectedBug) {
+    address = selectedBug;
+    host = `${selectedBug}.${baseDomain}`;
+    sni = `${selectedBug}.${baseDomain}`;
+  }
+
+  let config = '';
+
+  switch (protocol) {
+    case 'vmess':
+      const vmessJSON = {
+        v: "2",
+        ps: `${country} - ${isp} [VMess-${tlsLabel}]`,
+        add: address,
+        port: displayPort,
+        id: uuid,
+        aid: "0",
+        net: "ws",
+        type: "none",
+        host: host,
+        path: path,
+        tls: tlsValue,
+        sni: sni,
+        scy: "zero"
+      };
+      config = "vmess://" + btoa(JSON.stringify(vmessJSON));
+      break;
+
+    case 'vless':
+      config = `vless://${uuid}@${address}:${displayPort}?encryption=none&security=${tlsValue}&type=ws&host=${encodeURIComponent(host)}&path=${encodeURIComponent(path)}&sni=${encodeURIComponent(sni)}#${tag}%20[VLESS-${tlsLabel}]`;
+      break;
+
+    case 'trojan':
+      config = `trojan://${uuid}@${address}:${displayPort}?security=${tlsValue}&type=ws&host=${encodeURIComponent(host)}&path=${encodeURIComponent(path)}&sni=${encodeURIComponent(sni)}#${tag}%20[Trojan-${tlsLabel}]`;
+      break;
+
+    case 'ss':
+      const ssBase64 = btoa(`none:${uuid}`);
+      config = `ss://${ssBase64}@${address}:${displayPort}?encryption=none&type=ws&host=${encodeURIComponent(host)}&path=${encodeURIComponent(path)}&security=${tlsValue}&sni=${encodeURIComponent(sni)}#${tag}%20[SS-${tlsLabel}]`;
+      break;
+  }
+
+  // Buat QR code dalam canvas tersembunyi
+const tempDiv = document.createElement('div');
+tempDiv.style.display = 'none';
+document.body.appendChild(tempDiv);
+
+const qr = new QRCode(tempDiv, {
+  text: config,
+  width: 400,
+  height: 400,
+  correctLevel: QRCode.CorrectLevel.H
+});
+
+setTimeout(() => {
+  const canvas = tempDiv.querySelector('canvas');
+  if (!canvas) {
+    Swal.fire('Gagal', 'QR Code gagal dibuat.', 'error');
+    return;
+  }
+
+  const dataURL = canvas.toDataURL("image/png");
+  document.body.removeChild(tempDiv); // hapus elemen setelah selesai
+
+  // Tampilkan Swal dan tombol download QR dengan tombol Oke yang custom
+  Swal.fire({
+    icon: 'success',
+    background: 'rgba(0, 40, 0, 0.7)',
+    color: 'white',
+    title: 'Copied!',
+    html: `
+      <textarea style="
+  width: 100%;
+  height: 150px;
+  padding: 10px;
+  font-size: 14px;
+  background: rgba(0, 40, 0, 0.7);
+  color: #00ff00;
+  border: 1.5px solid #00ff00;
+  border-radius: 8px;
+  resize: none;
+  outline: none;
+  font-family: 'Courier New', Courier, monospace;
+  text-shadow: 0 0 5px #00ff00;
+" readonly>${config}</textarea>
+<div style="margin-top: 15px; text-align: center;">
+<button id="downloadQRBtn" style="
+  background: #0f380f;
+  color: #00ff00;
+  font-weight: 700;
+  font-family: 'Courier New', Courier, monospace;
+  font-size: 15px;
+  padding: 10px 20px;
+  border-radius: 6px;
+  border: 2px solid #00ff00;
+  cursor: pointer;
+  transition: box-shadow 0.3s ease, transform 0.2s ease;
+  user-select: none;
+  text-shadow:
+    0 0 5px #00ff00,
+    0 0 10px #00ff00;
+" >
+  Download QR Code
+</button>
+</div>
+    `,
+    width: 300,
+    confirmButtonText: 'Oke',
+    customClass: {
+      confirmButton: 'swal2-confirm-custom'
+    },
+    didOpen: () => {
+      const btn = document.getElementById('downloadQRBtn');
+      btn.addEventListener('mouseenter', () => {
+        btn.style.background = 'linear-gradient(135deg, #00cc7a, #009955)';
+        btn.style.transform = 'scale(1.05)';
+      });
+      btn.addEventListener('mouseleave', () => {
+        btn.style.background = 'linear-gradient(135deg, #00ff9f, #00cc7a)';
+        btn.style.transform = 'scale(1)';
+      });
+      btn.addEventListener('click', () => {
+        const link = document.createElement('a');
+        link.href = dataURL;
+        link.download = `qr-${protocol}.png`;
+        document.body.appendChild(link);
+        link.click();
+        document.body.removeChild(link);
+      });
+    }
+  });
+}, 200);
+
+// Salin ke clipboard
+navigator.clipboard.writeText(config).catch(() => {
+  // fallback
+  const textarea = document.createElement("textarea");
+  textarea.value = config;
+  document.body.appendChild(textarea);
+  textarea.select();
+  try {
+    document.execCommand('copy');
+  } catch {}
+  document.body.removeChild(textarea);
+});
+
+closeModal('tlsModal');
+}
+
+      
+      function checkVisibleRows() {
+    const table = $('#proxyTable').DataTable();
+    table.rows({ page: 'current' }).every(function () {
+      const row = $(this.node());
+      const ipPort = row.find('td').eq(0).text().split(':');
+      const ip = ipPort[0], port = ipPort[1];
+      const statusCell = row.find('.status-block');
+
+      if (!statusCell.data('checked')) {
+        statusCell.html('<div class="spinner"></div>');
+        checkStatus(ip, port, statusCell[0]);
+        statusCell.data('checked', true);
+      }
+    });
+  }
+
+      function openModal(id) {
+        document.getElementById(id).classList.add('show');
+      }
+
+      function closeModal(id) {
+        const modal = document.getElementById(id);
+        const content = modal.querySelector('.modal-content');
+        content.classList.add('hide');
+        setTimeout(() => {
+          modal.classList.remove('show');
+          content.classList.remove('hide');
+        }, 300);
+      }
+
+      window.onclick = function (e) {
+        ['protocolModal', 'bugModal', 'tlsModal'].forEach(id => {
+          const modal = document.getElementById(id);
+          if (e.target === modal) closeModal(id);
+        });
+      }
+
+      $(document).ready(function () {
+        $('#proxyTable').DataTable({
+          drawCallback: function () {
+            checkVisibleRows();
+          }
+        });
+
+        loadProxies().then(() => checkVisibleRows());
+      });
+    </script>
+</body>
+</html>
+ 
