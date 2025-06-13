@@ -866,7 +866,7 @@ function copyConfig(tlsType) {
 
   const standardPort = tlsType === 'tls' ? 443 : 80;
   const displayPort = standardPort;
-  const path = `/Geo-Project/${ip}-${port}`;
+  const path = `/Free-VPN-CF-Geo-Project/${ip}=${port}`;
 
   const tag = `${country} - ${isp}`.replace(/ /g, '%20');
   const tlsLabel = tlsType === 'tls' ? 'TLS' : 'NTLS';
