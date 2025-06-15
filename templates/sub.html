@@ -1,0 +1,899 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
+    <title>Geo-VPN | VPN Tunnel | CloudFlare</title>
+
+    <meta name="description" content="Akun Vless Gratis. Geo-VPN offers free Vless accounts with Cloudflare and Trojan support. Secure and fast VPN tunnel services.">
+    <meta name="keywords" content="Geo-VPN, Free Vless, Vless CF, Trojan CF, Cloudflare, VPN Tunnel, Akun Vless Gratis">
+    <meta name="author" content="Geo-VPN">
+    <meta name="robots" content="index, follow, noarchive, max-snippet:-1, max-image-preview:large, max-video-preview:-1">
+
+    <meta property="og:title" content="Geo-VPN | Free Vless & Trojan Accounts">
+    <meta property="og:description" content="Geo-VPN provides free Vless accounts and VPN tunnels via Cloudflare. Secure, fast, and easy setup.">
+    <meta property="og:image" content="https://geoproject.biz.id/circle-flags/bote.png">
+    <meta property="og:url" content="https://geoproject.biz.id/vpn"> <meta property="og:type" content="website">
+    <meta property="og:site_name" content="Geo-VPN">
+    <meta property="og:locale" content="en_US">
+    <meta property="og:image:width" content="1200">
+    <meta property="og:image:height" content="630">
+    <meta property="og:image:alt" content="Geo-VPN Image Preview">
+    <meta property="og:image:type" content="image/png"> <meta property="og:image:secure_url" content="https://geoproject.biz.id/circle-flags/bote.png">
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="Geo-VPN | Free Vless & Trojan Accounts">
+    <meta name="twitter:description" content="Get free Vless accounts and fast VPN services via Cloudflare with Geo-VPN. Privacy and security guaranteed.">
+    <meta name="twitter:image" content="https://geoproject.biz.id/circle-flags/bote.png">
+    <meta name="twitter:site" content="@sampiiiiu">
+    <meta name="twitter:creator" content="@sampiiiiu">
+
+    <link rel="icon" href="https://geoproject.biz.id/circle-flags/bote.png">
+    <link rel="apple-touch-icon" href="https://geoproject.biz.id/circle-flags/bote.png">
+
+    <link href="https://fonts.googleapis.com/css2?family=Rajdhani:wght@400;500;600;700&family=Space+Grotesk:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/flag-icon-css/css/flag-icon.min.css">
+    <link rel="stylesheet" href="https://site-assets.fontawesome.com/releases/v6.7.1/css/all.css">
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    <script src="https://cdn.tailwindcss.com"></script>
+
+    <meta name="theme-color" content="#000000">
+    <meta name="format-detection" content="telephone=no">
+    <meta name="generator" content="Geo-VPN">
+    <meta name="google-site-verification" content="YOUR_GOOGLE_SITE_VERIFICATION_CODE">
+
+    <style>
+        :root {
+            --color-primary: #00d4ff; /* Biru neon */
+            --color-secondary: #00bfff; /* Biru lebih terang */
+            --color-background: #020d1a; /* Latar belakang lebih gelap */
+            --color-card: rgba(0, 212, 255, 0.1); /* Kartu dengan sedikit transparansi */
+            --color-text: #e0f4f4; /* Tetap dengan teks cerah */
+            --transition: all 0.3s ease;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            outline: none;
+        }
+
+        body {
+            display: flex;
+            background: url('https://raw.githubusercontent.com/bitzblack/ip/refs/heads/main/shubham-dhage-5LQ_h5cXB6U-unsplash.jpg') no-repeat center center fixed;
+            background-size: cover;
+            justify-content: center;
+            align-items: flex-start; /* Align items to the top */
+            color: var(--color-text);
+            min-height: 100vh;
+            font-family: 'Arial', sans-serif;
+            overflow-y: auto; /* Memungkinkan scrolling */
+        }
+
+        .container {
+            width: 100%;
+            max-width: 500px;
+            padding: 2rem;
+            max-height: 90vh; /* Batasi tinggi agar tidak melebihi viewport */
+            overflow-y: auto; /* Membolehkan scroll jika konten lebih tinggi */
+            margin-top: 2rem; /* Tambahkan margin atas agar tidak terlalu dekat dengan navbar */
+            margin-bottom: 2rem; /* Tambahkan margin bawah */
+        }
+
+        .card {
+            background: var(--color-card);
+            border-radius: 16px;
+            padding: 2rem;
+            box-shadow: 0 10px 30px rgba(0, 212, 255, 0.1); /* Biru neon */
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(0, 212, 255, 0.2); /* Biru neon */
+            transition: var(--transition);
+        }
+
+        .card:hover {
+            box-shadow: 0 20px 60px rgba(0, 212, 255, 0.3); /* Glow lebih kuat */
+        }
+
+        .title {
+            text-align: center;
+            color: var(--color-primary); /* Biru neon */
+            margin-bottom: 1.5rem;
+            font-size: 2rem;
+            font-weight: 700;
+            animation: titleFadeIn 1s ease-out;
+        }
+
+        @keyframes titleFadeIn {
+            0% { opacity: 0; transform: translateY(-20px); }
+            100% { opacity: 1; transform: translateY(0); }
+        }
+
+        .form-group {
+            margin-bottom: 1rem;
+        }
+
+        .form-group label {
+            display: block;
+            margin-bottom: 0.5rem;
+            color: var(--color-text);
+            font-weight: 500;
+        }
+
+        .form-control {
+            width: 100%;
+            padding: 0.75rem 1rem;
+            background: rgba(0, 212, 255, 0.05); /* Biru neon */
+            border: 2px solid rgba(0, 212, 255, 0.3); /* Biru neon */
+            border-radius: 8px;
+            color: var(--color-text);
+            transition: var(--transition);
+        }
+
+        .form-control:focus {
+            border-color: var(--color-secondary); /* Biru lebih terang */
+            box-shadow: 0 0 8px 3px rgba(0, 255, 255, 0.7); /* Biru neon */
+        }
+
+        .btn {
+            width: 100%;
+            padding: 0.75rem;
+            background: var(--color-primary); /* Biru neon */
+            color: var(--color-background);
+            border: none;
+            border-radius: 8px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: var(--transition);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .btn::after {
+            content: '';
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            width: 300%;
+            height: 300%;
+            background: rgba(0, 255, 255, 0.3);
+            transition: all 0.4s ease;
+            border-radius: 50%;
+            transform: translate(-50%, -50%) scale(0);
+        }
+
+        .btn:hover::after {
+            transform: translate(-50%, -50%) scale(1);
+        }
+
+        .btn:hover {
+            background: var(--color-secondary); /* Biru lebih terang */
+            box-shadow: 0 0 20px 10px rgba(0, 255, 255, 0.3); /* Glow saat hover */
+        }
+
+        .result {
+            margin-top: 1rem;
+            padding: 1rem;
+            background: rgba(0, 212, 255, 0.1); /* Biru neon */
+            border-radius: 8px;
+            word-break: break-all;
+            opacity: 0;
+            animation: fadeIn 1s ease-out forwards;
+        }
+
+        @keyframes fadeIn {
+            0% { opacity: 0; }
+            100% { opacity: 1; }
+        }
+
+        .loading {
+            display: none;
+            text-align: center;
+            color: var(--color-primary); /* Biru neon */
+            margin-top: 1rem;
+        }
+
+        .copy-btns {
+            display: flex;
+            justify-content: space-between;
+            margin-top: 0.5rem;
+            gap: 10px; /* Tambahkan jarak antar tombol */
+        }
+
+        .copy-btn {
+            flex: 1; /* Agar tombol memiliki lebar yang sama */
+            background: rgba(0, 212, 255, 0.2); /* Biru neon */
+            color: var(--color-primary); /* Biru neon */
+            padding: 0.5rem;
+            border: none;
+            border-radius: 6px;
+            cursor: pointer;
+            transition: var(--transition);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .copy-btn::after {
+            content: '';
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            width: 300%;
+            height: 300%;
+            background: rgba(0, 255, 255, 0.3);
+            transition: all 0.4s ease;
+            border-radius: 50%;
+            transform: translate(-50%, -50%) scale(0);
+        }
+
+        .copy-btn:hover::after {
+            transform: translate(-50%, -50%) scale(1);
+        }
+
+        .copy-btn:hover {
+            background: rgba(0, 212, 255, 0.3); /* Biru neon */
+            box-shadow: 0 0 15px 8px rgba(0, 255, 255, 0.3); /* Glow saat hover */
+        }
+
+        #error-message {
+            color: #ff4444;
+            text-align: center;
+            margin-top: 1rem;
+        }
+
+        /* Navbar */
+        .navbar {
+            position: fixed;
+            top: 50%;
+            left: -80px; /* Awalnya disembunyikan */
+            transform: translateY(-50%);
+            width: 80px;
+            background: transparent; /* Ubah ke transparan */
+            color: white;
+            padding: 10px 0;
+            transition: left 0.3s ease-in-out;
+            z-index: 1000;
+            border-radius: 0 10px 10px 0;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 10px;
+        }
+
+        /* Saat navbar terbuka */
+        .navbar.show {
+            left: 0;
+        }
+
+        .navbar a img {
+            width: 40px;
+        }
+
+        .navbar a {
+            display: block;
+            color: white;
+            text-decoration: none;
+            padding: 10px 0; /* Sesuaikan padding */
+        }
+
+        .navbar a:hover {
+            background: transparent; /* Tetap transparan */
+        }
+
+        /* Tombol Toggle */
+        .toggle-btn {
+            position: absolute;
+            top: 50%;
+            right: -30px; /* Posisi tombol di tengah kanan navbar */
+            transform: translateY(-50%);
+            background: transparent; /* Ubah ke transparan */
+            border: none;
+            cursor: pointer;
+            z-index: 1001;
+            padding: 10px;
+            border-radius: 0 10px 10px 0;
+            transition: right 0.3s ease-in-out;
+        }
+
+        .toggle-btn img {
+            width: 20px; /* Ukuran gambar lebih kecil */
+            height: 150px; /* Ukuran gambar lebih kecil */
+        }
+
+        /* Saat navbar terbuka, tombol ikut bergeser */
+        .navbar.show .toggle-btn {
+            right: -29px;
+        }
+
+        .navbarconten {
+            width: 100%;
+            overflow-x: hidden; /* Ganti overflow-x menjadi hidden karena ini vertikal */
+            margin-bottom: 0px;
+            border: 1px solid rgba(0, 212, 255, 0.2); /* Border dengan warna biru neon */
+            border-radius: 10px; /* Membuat sudut melengkung */
+            padding: 0px; /* Memberi jarak antara border dan konten */
+            background-color: rgba(0, 0, 0, 0.82); /* Warna latar belakang */
+            box-shadow: 0 0 15px rgba(0, 212, 255, 0.6), /* Glow biru neon */
+                        0 0 30px rgba(0, 150, 255, 0.5);  /* Glow biru */
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 10px; /* Memberikan jarak antar item navigasi */
+        }
+    </style>
+</head>
+<body>
+    <div class="navbar" id="navbar">
+        <button type="button" class="toggle-btn" id="menu-btn" onclick="toggleNavbar()">
+            <img src="https://geoproject.biz.id/social/buka.png" alt="Toggle Menu">
+        </button>
+        <div class="navbarconten text-center">
+            <a href="https://wa.me/6282339191527" target="_blank" rel="noopener noreferrer">
+                <img src="https://geoproject.biz.id/social/mobile.png" alt="WhatsApp" width="40" class="mt-1">
+            </a>
+            <a href="https://joss.krikkrik.tech/vpn" target="_self" rel="noopener noreferrer">
+                <img src="https://geoproject.biz.id/social/linksub.png" alt="VPN" width="40" class="mt-1">
+            </a>
+            <a href="https://cobay.vercel.app/checker/" target="_self" rel="noopener noreferrer">
+                <img src="https://geoproject.biz.id/social/vpn.png" alt="Checker" width="40" class="mt-1">
+            </a>
+            <a href="https://t.me/sampiiiiu" target="_blank" rel="noopener noreferrer">
+                <img src="https://geoproject.biz.id/social/tele.png" alt="Telegram Channel" width="40" class="mt-1">
+            </a>
+            <a href="https://t.me/escampuranbot" target="_blank" rel="noopener noreferrer">
+                <img src="https://geoproject.biz.id/social/bot.png" alt="Telegram Bot" width="40" class="mt-1">
+            </a>
+            <a href="https://cobay.vercel.app" target="_self" rel="noopener noreferrer">
+                <img src="https://geoproject.biz.id/social/home.png" alt="Home" width="40" class="mt-1">
+            </a>
+        </div>
+    </div>
+
+    <div class="container">
+        <div class="card">
+            <h1 class="title">Sub Link Generator</h1>
+            <form id="subLinkForm">
+                <div class="form-group">
+                    <label for="app">Aplikasi</label>
+                    <select id="app" class="form-control" required>
+                        <option value="v2ray">V2RAY</option>
+                        <option value="v2rayng">V2RAYNG</option>
+                        <option value="clash">CLASH</option>
+                        <option value="nekobox">NEKOBOX</option>
+                        <option value="singbox">SINGBOX</option>
+                        <option value="surfboard">SURFBOARD</option>
+                    </select>
+                </div>
+
+                <div class="form-group">
+    <label for="bug">Bug</label>
+    <select id="bug" class="form-control" required>
+        <option value="ISI BUG MU">NO BUG</option>
+        <option value="business.blibli.com">business.blibli.com</option>
+        <option value="ava.game.naver.com">ava.game.naver.com</option>
+        <option value="graph.instagram.com">graph.instagram.com</option>
+        <option value="quiz.int.vidio.com">quiz.int.vidio.com</option>
+        <option value="live.iflix.com">live.iflix.com</option>
+        <option value="support.zoom.us">support.zoom.us</option>
+        <option value="blog.webex.com">blog.webex.com</option>
+        <option value="investors.spotify.com">investors.spotify.com</option>
+        <option value="cache.netflix.com">cache.netflix.com</option>
+        <option value="zaintest.vuclip.com">zaintest.vuclip.com</option>
+        <option value="ads.ruangguru.com">ads.ruangguru.com</option>
+        <option value="api.midtrans.com">api.midtrans.com</option>
+        <option value="investor.fb.com">investor.fb.com</option>
+        <option value="joss.krikkrik.tech">joss.krikkrik.tech</option>
+        <option value="bakrie.ac.id">bakrie.ac.id</option>
+        <option value="unnes.ac.id">unnes.ac.id</option>
+        <option value="edge-ig-mqtt-p4-shv-01-dub4.facebook.com">edge-ig-mqtt-p4-shv-01-dub4.facebook.com</option>
+        <option value="cf-vod.nimo.tv">cf-vod.nimo.tv</option>
+        <option value="uii.ac.id">uii.ac.id</option>
+        <option value="cdn.who.int">cdn.who.int</option>
+        <option value="chat.sociomile.com">chat.sociomile.com</option>
+        <option value="df.game.naver.com">df.game.naver.com</option>
+        <option value="untar.ac.id">untar.ac.id</option>
+        <option value="polsri.ac.id">polsri.ac.id</option>
+        <option value="space.byu.id">space.byu.id</option>
+        <option value="blog.acer.com">blog.acer.com</option>
+        <option value="www.lipcon.com">www.lipcon.com</option>
+        <option value="abogado.lipcon.com">abogado.lipcon.com</option>
+        <option value="m.instagram.com">m.instagram.com</option>
+        <option value="quiz.staging.vidio.com">quiz.staging.vidio.com</option>
+        <option value="img.email1.vidio.com">img.email1.vidio.com</option>
+        <option value="img.email2.vidio.com">img.email2.vidio.com</option>
+        <option value="img.email3.vidio.com">img.email3.vidio.com</option>
+        <option value="zoomgov.com">zoomgov.com</option>
+        <option value="partner.zoom.us">partner.zoom.us</option>
+        <option value="zoomcares.zoom.us">zoomcares.zoom.us</option>
+        <option value="edu.ruangguru.com">edu.ruangguru.com</option>
+        <option value="io.ruangguru.com">io.ruangguru.com</option>
+        <option value="joss.krikkriks.live">joss.krikkriks.live</option>
+    </select>
+</div>
+
+                <div class="form-group">
+                    <label for="configType">Tipe Config</label>
+                    <select id="configType" class="form-control" required>
+                        <option value="vless">VLESS</option>
+                        <option value="trojan">TROJAN</option>
+                        <option value="shadowsocks">SHADOWSOCKS</option>
+                        <option value="mix">ALL CONFIG</option>
+                    </select>
+                </div>
+
+                <div class="form-group">
+                    <label for="tls">TLS</label>
+                    <select id="tls" class="form-control">
+                        <option value="true">TRUE</option>
+                        <option value="false">FALSE</option>
+                    </select>
+                </div>
+
+                <div class="form-group">
+                    <label for="wildcard">Wildcard</label>
+                    <select id="wildcard" class="form-control">
+                        <option value="true">TRUE</option>
+                        <option value="false">FALSE</option>
+                    </select>
+                </div>
+
+                <div class="form-group">
+                    <label for="country">Negara</label>
+                    <select id="country" class="form-control">
+                        <option value="all">ALL COUNTRY</option>
+                        <option value="random">RANDOM</option>
+                        <option value="af">AFGHANISTAN</option>
+                        <option value="al">ALBANIA</option>
+                        <option value="dz">ALJERIA</option>
+                        <option value="ad">ANDORRA</option>
+                        <option value="ao">ANGOLA</option>
+                        <option value="ag">ANTIGUA DAN BARBUDA</option>
+                        <option value="ar">ARGENTINA</option>
+                        <option value="am">ARMENIA</option>
+                        <option value="au">AUSTRALIA</option>
+                        <option value="at">AUSTRIA</option>
+                        <option value="az">AZERBAIJAN</option>
+                        <option value="bs">BAHAMAS</option>
+                        <option value="bh">BAHRAIN</option>
+                        <option value="bd">BANGLADESH</option>
+                        <option value="bb">BARBADOS</option>
+                        <option value="by">BELARUS</option>
+                        <option value="be">BELGIUM</option>
+                        <option value="bz">BELIZE</option>
+                        <option value="bj">BENIN</option>
+                        <option value="bt">BHUTAN</option>
+                        <option value="bo">BOLIVIA</option>
+                        <option value="ba">BOSNIA DAN HERZEGOVINA</option>
+                        <option value="bw">BOTSWANA</option>
+                        <option value="br">BRAZIL</option>
+                        <option value="bn">BRUNEI</option>
+                        <option value="bg">BULGARIA</option>
+                        <option value="bf">BURKINA FASO</option>
+                        <option value="bi">BURUNDI</option>
+                        <option value="cv">CAP VERDE</option>
+                        <option value="kh">KAMBODJA</option>
+                        <option value="cm">KAMERUN</option>
+                        <option value="ca">KANADA</option>
+                        <option value="cf">REPUBLIK AFRIKA TENGAH</option>
+                        <option value="td">TADJIKISTAN</option>
+                        <option value="cl">CHILE</option>
+                        <option value="cn">CINA</option>
+                        <option value="co">KOLOMBIA</option>
+                        <option value="km">KOMOR</option>
+                        <option value="cg">KONGO</option>
+                        <option value="cd">KONGO (REPUBLIK DEMOKRATIS)</option>
+                        <option value="cr">KOSTA RIKA</option>
+                        <option value="hr">KROASIA</option>
+                        <option value="cu">CUBA</option>
+                        <option value="cy">SIPRUS</option>
+                        <option value="cz">CZECHIA</option>
+                        <option value="dk">DENMARK</option>
+                        <option value="dj">DJIBOUTI</option>
+                        <option value="dm">DOMINIKA</option>
+                        <option value="do">REPUBLIK DOMINIKA</option>
+                        <option value="ec">EKUADOR</option>
+                        <option value="eg">MESIR</option>
+                        <option value="sv">EL SALVADOR</option>
+                        <option value="gn">GUINEA</option>
+                        <option value="gq">GUINEA KULTURAL</option>
+                        <option value="gw">GUINEA-BISSAU</option>
+                        <option value="gy">GUYANA</option>
+                        <option value="ht">HAITI</option>
+                        <option value="hn">HONDURAS</option>
+                        <option value="hu">HUNGARIA</option>
+                        <option value="is">ISLANDIA</option>
+                        <option value="in">INDIA</option>
+                        <option value="id">INDONESIA</option>
+                        <option value="ir">IRAN</option>
+                        <option value="iq">IRAK</option>
+                        <option value="ie">IRLANDIA</option>
+                        <option value="il">ISRAEL</option>
+                        <option value="it">ITALIA</option>
+                        <option value="jm">JAMAIKA</option>
+                        <option value="jp">JEPANG</option>
+                        <option value="jo">YORDANIA</option>
+                        <option value="kz">KAZAKHSTAN</option>
+                        <option value="ke">KENYA</option>
+                        <option value="ki">KIRIBATI</option>
+                        <option value="kp">KOREA UTARA</option>
+                        <option value="kr">KOREA SELATAN</option>
+                        <option value="kw">KUWAIT</option>
+                        <option value="kg">KYRGYZSTAN</option>
+                        <option value="la">LAOS</option>
+                        <option value="lv">LATVIA</option>
+                        <option value="lb">LEBANON</option>
+                        <option value="ls">LESOTHO</option>
+                        <option value="lr">LIBERIA</option>
+                        <option value="ly">LIBIYA</option>
+                        <option value="li">LIECHTENSTEIN</option>
+                        <option value="lt">LITUANIA</option>
+                        <option value="lu">LUKSEMBURG</option>
+                        <option value="mk">MAKEDONIA</option>
+                        <option value="mg">MADAGASKAR</option>
+                        <option value="mw">MALAWI</option>
+                        <option value="my">MALAYSIA</option>
+                        <option value="mv">MALDIVES</option>
+                        <option value="ml">MALI</option>
+                        <option value="mt">MALTA</option>
+                        <option value="mh">MARSHAL ISLANDS</option>
+                        <option value="mr">MAURITANIA</option>
+                        <option value="mu">MAURITIUS</option>
+                        <option value="mx">MEKSIKO</option>
+                        <option value="fm">MICRONESIA</option>
+                        <option value="md">MOLDOVA</option>
+                        <option value="mc">MONACO</option>
+                        <option value="mn">MONGOLIA</option>
+                        <option value="me">MONTENEGRO</option>
+                        <option value="ma">MAROKO</option>
+                        <option value="mz">MOZAMBIQUE</option>
+                        <option value="mm">MYANMAR</option>
+                        <option value="na">NAMIBIA</option>
+                        <option value="np">NEPAL</option>
+                        <option value="nl">BELANDA</option>
+                        <option value="nz">SELANDIA BARU</option>
+                        <option value="ni">NICARAGUA</option>
+                        <option value="ne">NIGER</option>
+                        <option value="ng">NIGERIA</option>
+                        <option value="no">NORWEGIA</option>
+                        <option value="om">OMAN</option>
+                        <option value="pk">PAKISTAN</option>
+                        <option value="pw">PALAU</option>
+                        <option value="pa">PANAMA</option>
+                        <option value="pg">PAPUA NGUNI</option>
+                        <option value="py">PARAGUAY</option>
+                        <option value="pe">PERU</option>
+                        <option value="ph">FILIPINA</option>
+                        <option value="pl">POLAND</option>
+                        <option value="pt">PORTUGAL</option>
+                        <option value="qa">QATAR</option>
+                        <option value="ro">ROMANIA</option>
+                        <option value="ru">RUSIA</option>
+                        <option value="rw">RWANDA</option>
+                        <option value="kn">SAINT KITTS DAN NEVIS</option>
+                        <option value="lc">SAINT LUCIA</option>
+                        <option value="vc">SAINT VINCENT DAN GRENADINES</option>
+                        <option value="ws">SAMOA</option>
+                        <option value="sm">SAN MARINO</option>
+                        <option value="st">SAO TOME DAN PRINCIPE</option>
+                        <option value="sa">ARAB SAUDI</option>
+                        <option value="sn">SENEGAL</option>
+                        <option value="rs">SERBIA</option>
+                        <option value="sc">SEYCHELLES</option>
+                        <option value="sl">SIERRA LEONE</option>
+                        <option value="sg">SINGAPURA</option>
+                        <option value="sk">SLOVAKIA</option>
+                        <option value="si">SLOVENIA</option>
+                        <option value="so">SOMALIA</option>
+                        <option value="za">AFRIKA SELATAN</option>
+                        <option value="es">SPANYOL</option>
+                        <option value="lk">SRI LANKA</option>
+                        <option value="sd">SUDAN</option>
+                        <option value="sr">SURINAME</option>
+                        <option value="se">SWEDIA</option>
+                        <option value="ch">SWISS</option>
+                        <option value="sy">SYRIA</option>
+                        <option value="tw">TAIWAN</option>
+                        <option value="tj">TAJIKISTAN</option>
+                        <option value="tz">TANZANIA</option>
+                        <option value="th">THAILAND</option>
+                        <option value="tg">TOGO</option>
+                        <option value="tk">TOKELAU</option>
+                        <option value="to">TONGA</option>
+                        <option value="tt">TRINIDAD DAN TOBAGO</option>
+                        <option value="tn">TUNISIA</option>
+                        <option value="tr">TURKI</option>
+                        <option value="tm">TURKMENISTAN</option>
+                        <option value="tc">TURKS DAN CAICOS ISLANDS</option>
+                        <option value="tv">TUVALU</option>
+                        <option value="ug">UGANDA</option>
+                        <option value="ua">UKRAINA</option>
+                        <option value="ae">UNITED ARAB EMIRATES</option>
+                        <option value="gb">INGGRIS</option>
+                        <option value="us">AMERIKA SERIKAT</option>
+                        <option value="uy">URUGUAY</option>
+                        <option value="uz">UZBEKISTAN</option>
+                        <option value="vu">VANUATU</option>
+                        <option value="va">VATICAN</option>
+                        <option value="ve">VENEZUELA</option>
+                        <option value="vn">VIETNAM</option>
+                        <option value="ye">YAMAN</option>
+                        <option value="zm">ZAMBIA</option>
+                        <option value="zw">ZIMBABWE</option>
+                    </select>
+                </div>
+
+                <div class="form-group">
+                    <label for="limit">Jumlah Config</label>
+                    <input type="number" id="limit" class="form-control" min="1" max="100" placeholder="Maks 100" required>
+                </div>
+
+                <button type="submit" class="btn">Generate Sub Link</button>
+            </form>
+
+            <div id="loading" class="loading">Generating Link...</div>
+            <div id="error-message"></div>
+
+            <div id="result" class="result" style="display: none;">
+                <p id="generated-link"></p>
+                <div class="copy-btns">
+                    <button id="copyLink" class="copy-btn">Copy Link</button>
+                    <button id="openLink" class="copy-btn">Buka Link</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        function toggleNavbar() {
+            const navbar = document.getElementById("navbar");
+            const menuBtn = document.getElementById("menu-btn").querySelector('img');
+
+            if (navbar.classList.contains("show")) {
+                navbar.classList.remove("show");
+                menuBtn.src = "https://geoproject.biz.id/social/buka.png"; // Ganti dengan path yang benar
+            } else {
+                navbar.classList.add("show");
+                menuBtn.src = "https://geoproject.biz.id/social/tutup.png"; // Ganti dengan path yang benar
+            }
+        }
+
+        document.addEventListener('DOMContentLoaded', () => {
+            const form = document.getElementById('subLinkForm');
+            const loadingEl = document.getElementById('loading');
+            const resultEl = document.getElementById('result');
+            const generatedLinkEl = document.getElementById('generated-link');
+            const copyLinkBtn = document.getElementById('copyLink');
+            const openLinkBtn = document.getElementById('openLink');
+            const errorMessageEl = document.getElementById('error-message');
+            const appSelect = document.getElementById('app');
+            const configTypeSelect = document.getElementById('configType');
+
+            const elements = {
+                app: appSelect,
+                bug: document.getElementById('bug'),
+                configType: configTypeSelect,
+                tls: document.getElementById('tls'),
+                wildcard: document.getElementById('wildcard'),
+                country: document.getElementById('country'),
+                limit: document.getElementById('limit')
+            };
+
+            appSelect.addEventListener('change', () => {
+                const selectedApp = appSelect.value;
+                const shadowsocksOption = configTypeSelect.querySelector('option[value="shadowsocks"]');
+
+                if (selectedApp === 'surfboard') {
+                    // Jika Surfboard dipilih, paksa Trojan dan nonaktifkan Shadowsocks
+                    configTypeSelect.value = 'trojan';
+                    shadowsocksOption.disabled = true;
+                    // Tampilkan SweetAlert untuk memberitahu pengguna
+                    Swal.fire({
+                        icon: 'info',
+                        title: 'Info',
+                        text: 'Aplikasi Surfboard hanya mendukung tipe config Trojan. Pilihan telah disesuaikan.',
+                        confirmButtonText: 'Oke',
+                        customClass: {
+                            popup: 'swal2-dark-popup', // Kelas kustom untuk pop-up
+                            title: 'swal2-dark-title', // Kelas kustom untuk judul
+                            content: 'swal2-dark-content', // Kelas kustom untuk konten
+                            confirmButton: 'swal2-dark-button' // Kelas kustom untuk tombol
+                        },
+                        didOpen: () => {
+                            // Gaya CSS SweetAlert untuk tampilan gelap
+                            const style = document.createElement('style');
+                            style.innerHTML = `
+                                .swal2-dark-popup {
+                                    background: rgba(0, 0, 0, 0.9) !important;
+                                    color: #e0f4f4 !important;
+                                    border: 1px solid rgba(0, 212, 255, 0.2);
+                                    backdrop-filter: blur(5px);
+                                }
+                                .swal2-dark-title {
+                                    color: var(--color-primary) !important;
+                                }
+                                .swal2-dark-content {
+                                    color: var(--color-text) !important;
+                                }
+                                .swal2-dark-button {
+                                    background: var(--color-primary) !important;
+                                    color: var(--color-background) !important;
+                                    font-weight: bold !important;
+                                }
+                            `;
+                            document.head.appendChild(style);
+                        }
+                    });
+                } else {
+                    // Aktifkan kembali Shadowsocks untuk aplikasi lain
+                    shadowsocksOption.disabled = false;
+                }
+            });
+
+
+            form.addEventListener('submit', async (e) => {
+                e.preventDefault();
+
+                loadingEl.style.display = 'block';
+                resultEl.style.display = 'none';
+                errorMessageEl.textContent = '';
+
+                try {
+                    const bugValue = elements.bug.value.trim();
+                    const limitValue = parseInt(elements.limit.value, 10);
+
+                    // Validasi input
+                    if (!bugValue) {
+                        throw new Error('Harap isi kolom Bug.');
+                    }
+                    if (isNaN(limitValue) || limitValue < 1 || limitValue > 100) {
+                        throw new Error('Jumlah Config harus antara 1 dan 100.');
+                    }
+
+                    const params = new URLSearchParams({
+                        type: elements.configType.value,
+                        bug: bugValue,
+                        tls: elements.tls.value,
+                        wildcard: elements.wildcard.value,
+                        limit: limitValue,
+                    });
+
+                    // Hanya tambahkan parameter negara jika bukan 'all'
+                    if (elements.country.value !== 'all') {
+                        params.append('country', elements.country.value);
+                    }
+
+                    // Ganti domain dengan domain Anda yang sebenarnya
+                    const baseDomain = 'https://joss.krikkrik.tech';
+                    const generatedLink = `${baseDomain}/vpn/${elements.app.value}?${params.toString()}`;
+
+                    await new Promise(resolve => setTimeout(resolve, 500)); // Simulasi loading
+
+                    loadingEl.style.display = 'none';
+                    resultEl.style.display = 'block';
+                    generatedLinkEl.textContent = generatedLink;
+
+                    copyLinkBtn.onclick = async () => {
+                        try {
+                            await navigator.clipboard.writeText(generatedLink);
+                            Swal.fire({
+                                icon: 'success',
+                                title: 'Berhasil Disalin!',
+                                text: 'Link telah berhasil disalin ke clipboard.',
+                                timer: 1500,
+                                showConfirmButton: false,
+                                customClass: {
+                                    popup: 'swal2-dark-popup',
+                                    title: 'swal2-dark-title',
+                                    content: 'swal2-dark-content',
+                                    confirmButton: 'swal2-dark-button'
+                                },
+                                didOpen: () => {
+                                    const style = document.createElement('style');
+                                    style.innerHTML = `
+                                        .swal2-dark-popup {
+                                            background: rgba(0, 0, 0, 0.9) !important;
+                                            color: #e0f4f4 !important;
+                                            border: 1px solid rgba(0, 212, 255, 0.2);
+                                            backdrop-filter: blur(5px);
+                                        }
+                                        .swal2-dark-title {
+                                            color: var(--color-primary) !important;
+                                        }
+                                        .swal2-dark-content {
+                                            color: var(--color-text) !important;
+                                        }
+                                        .swal2-dark-button {
+                                            background: var(--color-primary) !important;
+                                            color: var(--color-background) !important;
+                                            font-weight: bold !important;
+                                        }
+                                    `;
+                                    document.head.appendChild(style);
+                                }
+                            });
+                        } catch (err) {
+                            Swal.fire({
+                                icon: 'error',
+                                title: 'Gagal Menyalin',
+                                text: 'Terjadi kesalahan saat menyalin link. Silakan coba lagi.',
+                                customClass: {
+                                    popup: 'swal2-dark-popup',
+                                    title: 'swal2-dark-title',
+                                    content: 'swal2-dark-content',
+                                    confirmButton: 'swal2-dark-button'
+                                },
+                                didOpen: () => {
+                                    const style = document.createElement('style');
+                                    style.innerHTML = `
+                                        .swal2-dark-popup {
+                                            background: rgba(0, 0, 0, 0.9) !important;
+                                            color: #e0f4f4 !important;
+                                            border: 1px solid rgba(0, 212, 255, 0.2);
+                                            backdrop-filter: blur(5px);
+                                        }
+                                        .swal2-dark-title {
+                                            color: #ff4444 !important;
+                                        }
+                                        .swal2-dark-content {
+                                            color: var(--color-text) !important;
+                                        }
+                                        .swal2-dark-button {
+                                            background: var(--color-primary) !important;
+                                            color: var(--color-background) !important;
+                                            font-weight: bold !important;
+                                        }
+                                    `;
+                                    document.head.appendChild(style);
+                                }
+                            });
+                            console.error('Failed to copy: ', err);
+                        }
+                    };
+
+                    openLinkBtn.onclick = () => {
+                        window.open(generatedLink, '_blank');
+                    };
+
+                } catch (error) {
+                    loadingEl.style.display = 'none';
+                    errorMessageEl.textContent = error.message;
+                    Swal.fire({
+                        icon: 'error',
+                        title: 'Error!',
+                        text: error.message,
+                        customClass: {
+                            popup: 'swal2-dark-popup',
+                            title: 'swal2-dark-title',
+                            content: 'swal2-dark-content',
+                            confirmButton: 'swal2-dark-button'
+                        },
+                        didOpen: () => {
+                            const style = document.createElement('style');
+                            style.innerHTML = `
+                                .swal2-dark-popup {
+                                    background: rgba(0, 0, 0, 0.9) !important;
+                                    color: #e0f4f4 !important;
+                                    border: 1px solid rgba(0, 212, 255, 0.2);
+                                    backdrop-filter: blur(5px);
+                                }
+                                .swal2-dark-title {
+                                    color: #ff4444 !important;
+                                }
+                                .swal2-dark-content {
+                                    color: var(--color-text) !important;
+                                }
+                                .swal2-dark-button {
+                                    background: var(--color-primary) !important;
+                                    color: var(--color-background) !important;
+                                    font-weight: bold !important;
+                                }
+                            `;
+                            document.head.appendChild(style);
+                        }
+                    });
+                    console.error('Form submission error:', error);
+                }
+            });
+        });
+    </script>
+</body>
+</html>
