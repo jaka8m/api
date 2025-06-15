@@ -18,8 +18,8 @@ async def random_ip_page(request: Request):
     template = env.get_template("checker.html")
     return template.render()
 
-@app.get("/sub", response_class=HTMLResponse) # Tambahkan endpoint ini
-async def sub_api_page(request: Request):
+@app.get("/sub", response_class=HTMLResponse) # Endpoint baru untuk sub.html
+async def sub_page(request: Request):
     template = env.get_template("sub.html")
     return template.render()
 
