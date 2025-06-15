@@ -1,42 +1,76 @@
-from flask import Flask, request, jsonify
-import requests
+from fastapi import FastAPI, Request, Query, HTTPException
+from fastapi.responses import JSONResponse, HTMLResponse
+from helpers.proxy_checker import process_proxy
 
-app = Flask(__name__)
+from jinja2 import Environment, FileSystemLoader
 
-@app.route('/cek_kuota', methods=['GET'])
-def cek_kuota():
-    msisdn = request.args.get('msisdn')
-    if not msisdn:
-        return jsonify({'status': 'error', 'message': 'Parameter "msisdn" is required'}), 400
+app = FastAPI()
 
-    api_url = f"https://apigw.kmsp-store.com/sidompul/v4/cek_kuota?msisdn={msisdn}&isJSON=true"
-    headers = {
-        'Authorization': 'Basic c2lkb21wdWxhcGk6YXBpZ3drbXNw',
-        'X-API-Key': '60ef29aa-a648-4668-90ae-20951ef90c55',
-        'X-App-Version': '4.0.0',
-        'Content-Type': 'application/x-www-form-urlencoded',
-    }
+env = Environment(loader=FileSystemLoader("templates"))
+
+@app.get("/", response_class=HTMLResponse)
+async def homepage(request: Request):
+    template = env.get_template("index.html")
+    return template.render()
+
+@app.get("/checker", response_class=HTMLResponse) # Tambahkan endpoint ini
+async def random_ip_page(request: Request):
+    template = env.get_template("checker.html")
+    return template.render()
+
+@app.get("/sub", response_class=HTMLResponse) # Endpoint baru untuk sub.html
+async def sub_page(request: Request):
+    template = env.get_template("sub.html")
+    return template.render()
+
+@app.get("/check")
+async def check_proxy_url_endpoint(
+    request: Request,
+    ip: str = Query(..., description="Alamat IP proxy dengan format IP:PORT")
+):
+    if ":" not in ip:
+        return JSONResponse(
+            status_code=400,
+            content={
+                "error": "Parameter 'ip' harus dalam format IP:PORT."
+            },
+        )
+
+    ip_address, port_str = ip.split(":", 1)
 
     try:
-        response = requests.get(api_url, headers=headers)
-        response.raise_for_status()
-        data = response.json()
-        return jsonify({'status': 'success', 'msisdn': msisdn, 'data': data}), 200
+        port_number = int(port_str)
+        status_str, message, country_code, asn, country_name, country_flag, http_protocol, org_name, connection_time, latitude, longitude, colo = process_proxy(ip_address, port_number)
 
-    except requests.exceptions.RequestException as e:
-        status_code = getattr(e.response, 'status_code', 500)
-        error_details = getattr(e.response, 'text', str(e))
-        return jsonify({
-            'status': 'error',
-            'message': f"Failed to fetch data from XL API. Status: {status_code}",
-            'details': error_details
-        }), status_code
+        if status_str == "Active":
+            response_data = {
+                "ip": ip_address,
+                "port": port_number,
+                "status": "ACTIVE",
+                "isp": org_name,
+                "countryCode": country_code,
+                "country": f"{country_name} {country_flag}",
+                "asn": asn,
+                "colo": colo,
+                "httpProtocol": http_protocol,
+                "delay": f"{round(connection_time)} ms",
+                "latitude": latitude,
+                "longitude": longitude,
+                "colo": colo,
+            }
+        else:
+            response_data = {
+                "ip": ip_address,
+                "port": port_number,
+                "status": "DEAD",
+                "asn": asn,
+            }
+
+        return response_data
+
+    except ValueError:
+        return JSONResponse(status_code=400, content={"error": "Port harus berupa angka."})
     except Exception as e:
-        return jsonify({
-            'status': 'error',
-            'message': 'Internal server error while checking XL package.',
-            'details': str(e)
-        }), 500
-
-# supaya Vercel bisa kenali app Flask
-app = app
+        error_message = f"Terjadi kesalahan server saat memproses proxy {ip}: {e}"
+        print(error_message)
+        return JSONResponse(status_code=500, content={"error": error_message})
