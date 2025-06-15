@@ -10,10 +10,10 @@
         body {
             margin: 0;
             padding: 0;
-            overflow: scroll;
-            font-family: 'Share Tech Mono', monospace;
-            background-color: #0a0a0a;
-            color: #00ff41;
+            overflow: hidden; /* Prevent scrollbar from canvas */
+            font-family: 'Share Tech Mono', monospace; /* More hacker-like font */
+            background-color: #0a0a0a; /* Darker background */
+            color: #00ff41; /* Matrix green text */
         }
 
         /* Matrix Canvas Overlay */
@@ -23,69 +23,77 @@
             left: 0;
             width: 100vw;
             height: 100vh;
-            z-index: -1;
-            opacity: 0.6;
+            z-index: -1; /* Send it to the back */
+            opacity: 0.6; /* Slight transparency */
         }
 
         /* Main Content Container */
         .container {
             position: relative;
-            z-index: 1;
+            z-index: 1; /* Keep content above canvas */
             padding: 20px;
             max-width: 900px;
             margin: 20px auto;
-            background-color: rgba(10, 10, 10, 0.85);
+            background-color: rgba(10, 10, 10, 0.85); /* Semi-transparent dark background */
             border-radius: 8px;
-            box-shadow: 0 0 20px rgba(0, 255, 65, 0.3);
-            border: 1px solid #004d00;
+            box-shadow: 0 0 20px rgba(0, 255, 65, 0.3); /* Green glow effect */
+            border: 1px solid #004d00; /* Subtle green border */
         }
 
         h2 {
-            color: #00ff41;
+            color: #00ff41; /* Bright green */
             margin-bottom: 15px;
             text-align: center;
-            text-shadow: 0 0 8px rgba(0, 255, 65, 0.7);
+            text-shadow: 0 0 8px rgba(0, 255, 65, 0.7); /* Text glow */
             letter-spacing: 2px;
         }
 
         textarea,
         input[type="file"] {
-            background-color: #001a00;
-            color: #00ff41;
-            border: 1px solid #004d00;
+            background-color: #001a00; /* Very dark green */
+            color: #00ff41; /* Matrix green text */
+            border: 1px solid #004d00; /* Darker green border */
             border-radius: 6px;
             padding: 12px;
             width: 100%;
             font-size: 15px;
             box-sizing: border-box;
-            resize: vertical;
+            resize: vertical; /* Allow vertical resize */
             font-family: 'Courier New', monospace;
-            box-shadow: inset 0 0 5px rgba(0, 255, 65, 0.2);
+            box-shadow: inset 0 0 5px rgba(0, 255, 65, 0.2); /* Inner glow */
         }
 
-        /* --- Modifikasi CSS Tombol Dimulai Di Sini --- */
         .controls {
             display: flex;
-            flex-direction: column; /* Tetap kolom untuk susunan baris 1-2-2 */
-            gap: 10px; /* Jarak antar baris (misal: antara baris 1 dan baris 2) */
+            flex-direction: column;
+            gap: 12px;
             margin-top: 20px;
-            align-items: center; /* Pusatkan baris */
+            align-items: center;
         }
 
         .controls .row {
             display: flex;
-            flex-wrap: wrap; /* Izinkan tombol pecah baris jika tidak muat */
-            justify-content: center; /* Pusatkan tombol dalam baris */
-            gap: 10px; /* Jarak antar tombol di dalam satu baris */
-            width: 100%; /* Pastikan baris mengambil lebar penuh */
+            gap: 12px;
+            width: 100%;
+            justify-content: center;
+        }
+
+        .controls .row.full button {
+            flex: 1;
+            max-width: 350px;
+        }
+
+        .controls .row.half button {
+            flex: 1;
+            max-width: 170px;
         }
 
         button {
-            background-color: #006633;
+            background-color: #006633; /* Darker green button */
             border: none;
             color: white;
-            padding: 10px 12px; /* Ukuran padding lebih kecil */
-            font-size: 14px; /* Ukuran font lebih kecil */
+            padding: 12px 15px;
+            font-size: 16px;
             border-radius: 5px;
             cursor: pointer;
             transition: background-color 0.3s ease, transform 0.1s ease, box-shadow 0.3s ease;
@@ -93,19 +101,12 @@
             font-family: 'Share Tech Mono', monospace;
             text-transform: uppercase;
             letter-spacing: 1px;
-            box-shadow: 0 0 10px rgba(0, 255, 65, 0.4);
-            flex: 1 1 auto; /* Default fleksibilitas: bisa menyusut/membesar, basis auto */
-            max-width: 170px; /* Batasi lebar maksimum per tombol */
+            box-shadow: 0 0 10px rgba(0, 255, 65, 0.4); /* Button glow */
         }
 
-        /* Override untuk tombol 'Mulai Cek' agar lebih lebar di desktop */
-        .controls .row.full button {
-            max-width: 350px; /* Lebih lebar untuk tombol tunggal */
-        }
-        
         button:hover {
-            background-color: #008040;
-            transform: translateY(-2px);
+            background-color: #008040; /* Lighter green on hover */
+            transform: translateY(-2px); /* Slight lift */
             box-shadow: 0 0 15px rgba(0, 255, 65, 0.6);
         }
 
@@ -113,8 +114,6 @@
             transform: translateY(0);
             box-shadow: 0 0 5px rgba(0, 255, 65, 0.2);
         }
-        /* --- Modifikasi CSS Tombol Berakhir Di Sini --- */
-
 
         .stats {
             margin-top: 25px;
@@ -139,14 +138,14 @@
         table {
             width: 100%;
             border-collapse: collapse;
-            background-color: #001a00;
+            background-color: #001a00; /* Dark green for table background */
             min-width: 800px;
             margin: 0 auto;
         }
 
         th {
-            background-color: #003300;
-            color: #ccffcc;
+            background-color: #003300; /* Header green */
+            color: #ccffcc; /* Lighter green for header text */
             padding: 12px;
             text-align: left;
             border-bottom: 2px solid #006600;
@@ -156,29 +155,29 @@
 
         td {
             padding: 10px;
-            border-bottom: 1px dashed #004d00;
-            color: #00e676;
+            border-bottom: 1px dashed #004d00; /* Dashed green border */
+            color: #00e676; /* Main table text color */
             font-size: 14px;
         }
 
         td:last-child {
-            border-bottom: none;
+            border-bottom: none; /* No border for last row cell */
         }
 
         .green {
-            color: #a7ffeb;
+            color: #a7ffeb; /* Lighter, vibrant green for active */
             font-weight: bold;
             text-shadow: 0 0 3px rgba(167, 255, 235, 0.7);
         }
 
         .red {
-            color: #ff5252;
+            color: #ff5252; /* Red for inactive/error */
             font-weight: bold;
             text-shadow: 0 0 3px rgba(255, 82, 82, 0.7);
         }
 
         ::file-selector-button {
-            background: #004d00;
+            background: #004d00; /* Darker green for file button */
             color: white;
             border: none;
             padding: 8px 15px;
@@ -189,33 +188,6 @@
 
         ::file-selector-button:hover {
             background: #006600;
-        }
-
-        /* Custom Notification Styling */
-        .custom-notification {
-            position: fixed;
-            bottom: 20px;
-            right: 20px;
-            background-color: rgba(0, 51, 0, 0.9);
-            color: #00ff41;
-            padding: 15px 25px;
-            border-radius: 8px;
-            border: 1px solid #008040;
-            box-shadow: 0 0 15px rgba(0, 255, 65, 0.7);
-            z-index: 1000;
-            opacity: 0;
-            visibility: hidden;
-            transform: translateY(20px);
-            transition: opacity 0.4s ease-out, transform 0.4s ease-out, visibility 0.4s;
-            font-family: 'Share Tech Mono', monospace;
-            font-size: 16px;
-            letter-spacing: 0.5px;
-        }
-
-        .custom-notification.show {
-            opacity: 1;
-            visibility: visible;
-            transform: translateY(0);
         }
 
         /* Responsive adjustments */
@@ -229,29 +201,15 @@
                 font-size: 24px;
             }
 
-            /* --- Modifikasi Responsive Tombol Dimulai Di Sini --- */
-            /* Di layar kecil, tombol akan tetap mencoba berjejer 2,
-               tetapi akan turun ke baris baru jika tidak muat.
-               Max-width per tombol akan membatasi agar tidak terlalu kecil atau terlalu besar. */
-            button {
-                flex: 1 1 45%; /* Setiap tombol akan mencoba mengambil 45% lebar baris,
-                                  menyisakan ruang untuk gap 10px di antaranya.
-                                  Ini memungkinkan 2 tombol per baris. */
-                max-width: 100%; /* Batalkan max-width global untuk tombol */
+            .controls .row {
+                flex-direction: column;
             }
 
-            /* Tombol 'Mulai Cek' di baris penuh akan mengambil 100% di HP */
-            .controls .row.full button {
-                flex: 1 1 100%;
-                max-width: 100%;
+            .controls .row.full button,
+            .controls .row.half button {
+                max-width: none;
+                width: 100%;
             }
-            
-            /* Jarak antar baris */
-            .controls {
-                gap: 8px;
-            }
-
-            /* --- Modifikasi Responsive Tombol Berakhir Di Sini --- */
 
             th,
             td {
@@ -262,25 +220,12 @@
             .stats {
                 font-size: 15px;
             }
-
-            .custom-notification {
-                bottom: 10px;
-                right: 10px;
-                left: 10px;
-                width: auto;
-                font-size: 14px;
-                padding: 10px 15px;
-            }
         }
     </style>
 </head>
 
 <body>
     <canvas id="matrixCanvas"></canvas>
-
-    <div id="customNotification" class="custom-notification">
-        <span id="notificationMessage"></span>
-    </div>
 
     <div class="container">
         <h2>Matrix Proxy Checker</h2>
@@ -341,55 +286,49 @@
 
         const drops = [];
         for (let x = 0; x < columns; x++) {
-            drops[x] = 1;
+            drops[x] = 1; // Start each column at the top
         }
 
         function drawMatrix() {
+            // Semi-transparent black background to create trail effect
             ctx.fillStyle = 'rgba(0, 0, 0, 0.05)';
             ctx.fillRect(0, 0, canvas.width, canvas.height);
 
+            // Matrix green color for characters
             ctx.fillStyle = '#00ff41';
-            ctx.font = `${fontSize}px Share Tech Mono`;
+            ctx.font = `${fontSize}px Share Tech Mono`; // Use the same font as body
 
             for (let i = 0; i < drops.length; i++) {
                 const text = chars.charAt(Math.floor(Math.random() * chars.length));
                 ctx.fillText(text, i * fontSize, drops[i] * fontSize);
 
+                // Send the drop back to the top randomly
                 if (drops[i] * fontSize > canvas.height && Math.random() > 0.975) {
                     drops[i] = 0;
                 }
 
+                // Increment y-coordinate
                 drops[i]++;
             }
         }
 
-        setInterval(drawMatrix, 33);
+        setInterval(drawMatrix, 33); // Approximately 30 frames per second
 
+        // Adjust canvas size on window resize
         window.addEventListener('resize', () => {
             canvas.width = window.innerWidth;
             canvas.height = window.innerHeight;
+            // Re-initialize drops for new width
             const newColumns = canvas.width / fontSize;
-            drops.length = 0;
+            drops.length = 0; // Clear existing drops
             for (let x = 0; x < newColumns; x++) {
                 drops[x] = 1;
             }
         });
 
-        // --- Custom Notification Function ---
-        function showNotification(message) {
-            const notification = document.getElementById('customNotification');
-            const msgElement = document.getElementById('notificationMessage');
-
-            msgElement.textContent = message;
-            notification.classList.add('show');
-
-            setTimeout(() => {
-                notification.classList.remove('show');
-            }, 3000);
-        }
-
-        // --- Existing Proxy Checker JavaScript (modified for custom alerts) ---
+        // --- Existing Proxy Checker JavaScript (mostly unchanged) ---
         window.onload = () => {
+            // Load custom font for a more hacker-like look
             const link = document.createElement('link');
             link.href = 'https://fonts.googleapis.com/css2?family=Share+Tech+Mono&display=swap';
             link.rel = 'stylesheet';
@@ -414,14 +353,14 @@
 
         async function loadFromFiles() {
             const files = document.getElementById('fileInput').files;
-            if (!files.length) return showNotification('Pilih minimal 1 file .txt');
+            if (!files.length) return alert('Pilih minimal 1 file .txt');
             let allText = document.getElementById('input').value.trim();
             for (const file of files) {
                 const text = await file.text();
                 allText += '\n' + text.trim();
             }
             document.getElementById('input').value = allText.trim();
-            showNotification('File berhasil digabung!');
+            alert('Semua isi file berhasil digabung ke dalam textarea!');
         }
 
         async function startCheck() {
@@ -436,8 +375,8 @@
             result.innerHTML = '';
             stats.total = lines.length;
             document.getElementById('total').textContent = stats.total;
-            document.getElementById('inactive').textContent = 0;
             document.getElementById('active').textContent = 0;
+            document.getElementById('inactive').textContent = 0;
 
             for (let i = 0; i < lines.length; i++) {
                 const [ip, port] = lines[i].split(':');
@@ -452,9 +391,9 @@
                 const ispCell = row.insertCell();
                 const protoCell = row.insertCell();
                 const delayCell = row.insertCell();
-                statusCell.textContent = '...';
+                statusCell.textContent = '...'; // Initial status
 
-                (async (currentRow, currentStats) => {
+                setTimeout(async () => {
                     try {
                         const res = await fetch(`/check?ip=${ip}:${port}`);
                         const data = await res.json();
@@ -462,11 +401,11 @@
                         if (data.status === 'ACTIVE') {
                             statusCell.textContent = 'Active';
                             statusCell.className = 'green';
-                            currentStats.active++;
+                            stats.active++;
                         } else {
                             statusCell.textContent = 'Inactive';
                             statusCell.className = 'red';
-                            currentStats.inactive++;
+                            stats.inactive++;
                         }
 
                         countryCell.textContent = data.country || '-';
@@ -476,14 +415,14 @@
                     } catch {
                         statusCell.textContent = 'Error';
                         statusCell.className = 'red';
-                        currentStats.inactive++;
+                        stats.inactive++;
                     }
 
-                    document.getElementById('active').textContent = currentStats.active;
-                    document.getElementById('inactive').textContent = currentStats.inactive;
+                    document.getElementById('active').textContent = stats.active;
+                    document.getElementById('inactive').textContent = stats.inactive;
                     saveResultsToLocalStorage();
-                    currentRow.scrollIntoView({ behavior: 'smooth', block: 'end' });
-                })(row, stats);
+                    row.scrollIntoView({ behavior: 'smooth', block: 'end' });
+                }, 200 * i);
             }
         }
 
@@ -492,6 +431,7 @@
                 .filter(r => r.querySelector('.green'))
                 .map(r => {
                     const cells = r.querySelectorAll('td');
+                    // Ensure cells[4] (country) exists before accessing textContent
                     const country = (cells[4] && cells[4].textContent ? cells[4].textContent.split(' ')[0] : '-');
                     return [cells[1].textContent, cells[2].textContent, country, (cells[5] && cells[5].textContent ? cells[5].textContent : '-')].join(',');
                 })
@@ -500,10 +440,7 @@
 
         function copyToClipboard() {
             const proxies = getActiveProxies().join('\n');
-            if (proxies.length === 0) {
-                return showNotification('Tidak ada proxy aktif untuk disalin!');
-            }
-            navigator.clipboard.writeText(proxies).then(() => showNotification('Proxy berhasil disalin!'));
+            navigator.clipboard.writeText(proxies).then(() => alert('Disalin ke clipboard!'));
         }
 
         function copyIpPort() {
@@ -513,24 +450,17 @@
                     const cells = r.querySelectorAll('td');
                     return `${cells[1].textContent}:${cells[2].textContent}`;
                 });
-            if (active.length === 0) {
-                return showNotification('Tidak ada IP:Port aktif untuk disalin!');
-            }
             navigator.clipboard.writeText(active.join('\n'))
-                .then(() => showNotification('IP:Port aktif berhasil disalin!'));
+                .then(() => alert('IP:Port aktif berhasil disalin!'));
         }
 
         function downloadTxt() {
             const proxies = getActiveProxies().join('\n');
-            if (proxies.length === 0) {
-                return showNotification('Tidak ada proxy aktif untuk diunduh!');
-            }
             const blob = new Blob([proxies], { type: 'text/plain' });
             const a = document.createElement('a');
             a.href = URL.createObjectURL(blob);
             a.download = 'active_proxies.txt';
             a.click();
-            showNotification('File berhasil diunduh!');
         }
     </script>
 </body>
