@@ -2,324 +2,537 @@
 <html lang="id">
 
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>Proxy Checker</title>
-  <style>
-    body {
-      background-color: #121212;
-      color: #e0e0e0;
-      font-family: 'Courier New', monospace;
-      padding: 20px;
-      margin: 0;
-    }
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Matrix Proxy Checker</title>
+    <style>
+        /* Basic Reset & Font */
+        body {
+            margin: 0;
+            padding: 0;
+            overflow: hidden;
+            font-family: 'Share Tech Mono', monospace;
+            background-color: #0a0a0a;
+            color: #00ff41;
+        }
 
-    h2 {
-      color: #00e676;
-      margin-bottom: 10px;
-      text-align: center;
-    }
+        /* Matrix Canvas Overlay */
+        #matrixCanvas {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100vw;
+            height: 100vh;
+            z-index: -1;
+            opacity: 0.6;
+        }
 
-    textarea,
-    input[type="file"] {
-      background-color: #1e1e1e;
-      color: #fff;
-      border: 1px solid #444;
-      border-radius: 6px;
-      padding: 10px;
-      width: 100%;
-      font-size: 16px;
-      box-sizing: border-box;
-    }
+        /* Main Content Container */
+        .container {
+            position: relative;
+            z-index: 1;
+            padding: 20px;
+            max-width: 900px;
+            margin: 20px auto;
+            background-color: rgba(10, 10, 10, 0.85);
+            border-radius: 8px;
+            box-shadow: 0 0 20px rgba(0, 255, 65, 0.3);
+            border: 1px solid #004d00;
+        }
 
-    .controls {
-      display: flex;
-      flex-direction: column;
-      gap: 10px;
-      margin-top: 10px;
-      align-items: center;
-    }
+        h2 {
+            color: #00ff41;
+            margin-bottom: 15px;
+            text-align: center;
+            text-shadow: 0 0 8px rgba(0, 255, 65, 0.7);
+            letter-spacing: 2px;
+        }
 
-    .controls .row {
-      display: flex;
-      gap: 10px;
-      width: 100%;
-      justify-content: center;
-    }
+        textarea,
+        input[type="file"] {
+            background-color: #001a00;
+            color: #00ff41;
+            border: 1px solid #004d00;
+            border-radius: 6px;
+            padding: 12px;
+            width: 100%;
+            font-size: 15px;
+            box-sizing: border-box;
+            resize: vertical;
+            font-family: 'Courier New', monospace;
+            box-shadow: inset 0 0 5px rgba(0, 255, 65, 0.2);
+        }
 
-    .controls .row.full button {
-      flex: 1;
-      max-width: 300px;
-    }
+        /* --- Modifikasi CSS Tombol Dimulai Di Sini --- */
+        .controls {
+            display: flex;
+            flex-direction: column; /* Tetap kolom untuk susunan baris 1-2-2 */
+            gap: 10px; /* Jarak antar baris (misal: antara baris 1 dan baris 2) */
+            margin-top: 20px;
+            align-items: center; /* Pusatkan baris */
+        }
 
-    .controls .row.half button {
-      flex: 1;
-      max-width: 150px;
-    }
+        .controls .row {
+            display: flex;
+            flex-wrap: wrap; /* Izinkan tombol pecah baris jika tidak muat */
+            justify-content: center; /* Pusatkan tombol dalam baris */
+            gap: 10px; /* Jarak antar tombol di dalam satu baris */
+            width: 100%; /* Pastikan baris mengambil lebar penuh */
+        }
 
-    button {
-      background-color: #00acc1;
-      border: none;
-      color: white;
-      padding: 10px;
-      font-size: 16px;
-      border-radius: 5px;
-      cursor: pointer;
-      transition: background-color 0.3s;
-      min-width: 0;
-    }
+        button {
+            background-color: #006633;
+            border: none;
+            color: white;
+            padding: 10px 12px; /* Ukuran padding lebih kecil */
+            font-size: 14px; /* Ukuran font lebih kecil */
+            border-radius: 5px;
+            cursor: pointer;
+            transition: background-color 0.3s ease, transform 0.1s ease, box-shadow 0.3s ease;
+            min-width: 0;
+            font-family: 'Share Tech Mono', monospace;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            box-shadow: 0 0 10px rgba(0, 255, 65, 0.4);
+            flex: 1 1 auto; /* Default fleksibilitas: bisa menyusut/membesar, basis auto */
+            max-width: 170px; /* Batasi lebar maksimum per tombol */
+        }
 
-    button:hover {
-      background-color: #00838f;
-    }
+        /* Override untuk tombol 'Mulai Cek' agar lebih lebar di desktop */
+        .controls .row.full button {
+            max-width: 350px; /* Lebih lebar untuk tombol tunggal */
+        }
+        
+        button:hover {
+            background-color: #008040;
+            transform: translateY(-2px);
+            box-shadow: 0 0 15px rgba(0, 255, 65, 0.6);
+        }
 
-    .stats {
-      margin-top: 20px;
-      font-size: 16px;
-      text-align: center;
-    }
+        button:active {
+            transform: translateY(0);
+            box-shadow: 0 0 5px rgba(0, 255, 65, 0.2);
+        }
+        /* --- Modifikasi CSS Tombol Berakhir Di Sini --- */
 
-    .table-container {
-      overflow-x: auto;
-      margin-top: 20px;
-    }
 
-    table {
-      width: 100%;
-      border-collapse: collapse;
-      background-color: #1e1e1e;
-      min-width: 800px;
-      margin: 0 auto;
-    }
+        .stats {
+            margin-top: 25px;
+            font-size: 17px;
+            text-align: center;
+            color: #00ff41;
+            text-shadow: 0 0 5px rgba(0, 255, 65, 0.5);
+        }
 
-    th {
-      background-color: #263238;
-      color: #ffffff;
-      padding: 10px;
-      text-align: left;
-    }
+        .stats b {
+            color: #00e676;
+        }
 
-    td {
-      padding: 10px;
-      border-bottom: 1px solid #333;
-      color: #e0e0e0;
-    }
+        .table-container {
+            overflow-x: auto;
+            margin-top: 25px;
+            border: 1px solid #004d00;
+            border-radius: 8px;
+            box-shadow: 0 0 15px rgba(0, 255, 65, 0.3);
+        }
 
-    .green {
-      color: #69f0ae;
-      font-weight: bold;
-    }
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            background-color: #001a00;
+            min-width: 800px;
+            margin: 0 auto;
+        }
 
-    .red {
-      color: #ff5252;
-      font-weight: bold;
-    }
+        th {
+            background-color: #003300;
+            color: #ccffcc;
+            padding: 12px;
+            text-align: left;
+            border-bottom: 2px solid #006600;
+            font-size: 15px;
+            letter-spacing: 0.5px;
+        }
 
-    ::file-selector-button {
-      background: #444;
-      color: white;
-      border: none;
-      padding: 6px 12px;
-      border-radius: 4px;
-      cursor: pointer;
-    }
+        td {
+            padding: 10px;
+            border-bottom: 1px dashed #004d00;
+            color: #00e676;
+            font-size: 14px;
+        }
 
-    @media (max-width: 600px) {
-      textarea {
-        font-size: 14px;
-      }
+        td:last-child {
+            border-bottom: none;
+        }
 
-      button {
-        font-size: 14px;
-      }
+        .green {
+            color: #a7ffeb;
+            font-weight: bold;
+            text-shadow: 0 0 3px rgba(167, 255, 235, 0.7);
+        }
 
-      .stats {
-        font-size: 14px;
-      }
+        .red {
+            color: #ff5252;
+            font-weight: bold;
+            text-shadow: 0 0 3px rgba(255, 82, 82, 0.7);
+        }
 
-      th,
-      td {
-        padding: 8px;
-        font-size: 14px;
-      }
-    }
-  </style>
+        ::file-selector-button {
+            background: #004d00;
+            color: white;
+            border: none;
+            padding: 8px 15px;
+            border-radius: 4px;
+            cursor: pointer;
+            transition: background-color 0.3s;
+        }
+
+        ::file-selector-button:hover {
+            background: #006600;
+        }
+
+        /* Custom Notification Styling */
+        .custom-notification {
+            position: fixed;
+            bottom: 20px;
+            right: 20px;
+            background-color: rgba(0, 51, 0, 0.9);
+            color: #00ff41;
+            padding: 15px 25px;
+            border-radius: 8px;
+            border: 1px solid #008040;
+            box-shadow: 0 0 15px rgba(0, 255, 65, 0.7);
+            z-index: 1000;
+            opacity: 0;
+            visibility: hidden;
+            transform: translateY(20px);
+            transition: opacity 0.4s ease-out, transform 0.4s ease-out, visibility 0.4s;
+            font-family: 'Share Tech Mono', monospace;
+            font-size: 16px;
+            letter-spacing: 0.5px;
+        }
+
+        .custom-notification.show {
+            opacity: 1;
+            visibility: visible;
+            transform: translateY(0);
+        }
+
+        /* Responsive adjustments */
+        @media (max-width: 768px) {
+            .container {
+                margin: 10px;
+                padding: 15px;
+            }
+
+            h2 {
+                font-size: 24px;
+            }
+
+            /* --- Modifikasi Responsive Tombol Dimulai Di Sini --- */
+            /* Di layar kecil, tombol akan tetap mencoba berjejer 2,
+               tetapi akan turun ke baris baru jika tidak muat.
+               Max-width per tombol akan membatasi agar tidak terlalu kecil atau terlalu besar. */
+            button {
+                flex: 1 1 45%; /* Setiap tombol akan mencoba mengambil 45% lebar baris,
+                                  menyisakan ruang untuk gap 10px di antaranya.
+                                  Ini memungkinkan 2 tombol per baris. */
+                max-width: 100%; /* Batalkan max-width global untuk tombol */
+            }
+
+            /* Tombol 'Mulai Cek' di baris penuh akan mengambil 100% di HP */
+            .controls .row.full button {
+                flex: 1 1 100%;
+                max-width: 100%;
+            }
+            
+            /* Jarak antar baris */
+            .controls {
+                gap: 8px;
+            }
+
+            /* --- Modifikasi Responsive Tombol Berakhir Di Sini --- */
+
+            th,
+            td {
+                padding: 8px;
+                font-size: 13px;
+            }
+
+            .stats {
+                font-size: 15px;
+            }
+
+            .custom-notification {
+                bottom: 10px;
+                right: 10px;
+                left: 10px;
+                width: auto;
+                font-size: 14px;
+                padding: 10px 15px;
+            }
+        }
+    </style>
 </head>
 
 <body>
-  <h2>Proxy Checker</h2>
+    <canvas id="matrixCanvas"></canvas>
 
-  <textarea id="input" rows="6" placeholder="Masukkan proxy manual, contoh: IP:PORT\n..."></textarea>
-  <input type="file" id="fileInput" multiple accept=".txt" />
-
-  <div class="controls">
-    <div class="row full">
-      <button onclick="startCheck()">Mulai Cek</button>
+    <div id="customNotification" class="custom-notification">
+        <span id="notificationMessage"></span>
     </div>
-    <div class="row half">
-      <button onclick="loadFromFiles()">Gabungkan Dari File</button>
-      <button onclick="copyToClipboard()">Salin Proxy Aktif</button>
+
+    <div class="container">
+        <h2>Matrix Proxy Checker</h2>
+
+        <textarea id="input" rows="6" placeholder="Masukkan proxy manual, contoh: IP:PORT\n..."></textarea>
+        <input type="file" id="fileInput" multiple accept=".txt" />
+
+        <div class="controls">
+            <div class="row full">
+                <button onclick="startCheck()">Mulai Cek</button>
+            </div>
+            <div class="row half">
+                <button onclick="loadFromFiles()">Gabungkan Dari File</button>
+                <button onclick="copyToClipboard()">Salin Proxy Aktif</button>
+            </div>
+            <div class="row half">
+                <button onclick="copyIpPort()">Salin IP:Port Aktif</button>
+                <button onclick="downloadTxt()">Unduh .txt</button>
+            </div>
+        </div>
+
+        <div class="stats" id="stats">
+            <b>Total:</b> <span id="total">0</span> |
+            <b>Active:</b> <span id="active">0</span> |
+            <b>Inactive:</b> <span id="inactive">0</span>
+        </div>
+
+        <div class="table-container">
+            <table>
+                <thead>
+                    <tr>
+                        <th>No</th>
+                        <th>IP</th>
+                        <th>Port</th>
+                        <th>Status</th>
+                        <th>Country</th>
+                        <th>ISP</th>
+                        <th>Protocol</th>
+                        <th>Delay</th>
+                    </tr>
+                </thead>
+                <tbody id="result"></tbody>
+            </table>
+        </div>
     </div>
-    <div class="row half">
-      <button onclick="copyIpPort()">Salin IP:Port Aktif</button>
-      <button onclick="downloadTxt()">Unduh .txt</button>
-    </div>
-  </div>
 
-  <div class="stats" id="stats">
-    <b>Total:</b> <span id="total">0</span> |
-    <b>Active:</b> <span id="active">0</span> |
-    <b>Inactive:</b> <span id="inactive">0</span>
-  </div>
+    <script>
+        // --- Matrix Effect JavaScript ---
+        const canvas = document.getElementById('matrixCanvas');
+        const ctx = canvas.getContext('2d');
 
-  <div class="table-container">
-    <table>
-      <thead>
-        <tr>
-          <th>No</th>
-          <th>IP</th>
-          <th>Port</th>
-          <th>Status</th>
-          <th>Country</th>
-          <th>ISP</th>
-          <th>Protocol</th>
-          <th>Delay</th>
-        </tr>
-      </thead>
-      <tbody id="result"></tbody>
-    </table>
-  </div>
+        canvas.width = window.innerWidth;
+        canvas.height = window.innerHeight;
 
-  <script>
-    window.onload = () => {
-      const saved = localStorage.getItem('proxy_results');
-      if (saved) document.getElementById('result').innerHTML = saved;
-      const stats = JSON.parse(localStorage.getItem('proxy_stats') || '{}');
-      document.getElementById('total').textContent = stats.total || 0;
-      document.getElementById('active').textContent = stats.active || 0;
-      document.getElementById('inactive').textContent = stats.inactive || 0;
-    };
+        const chars = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789!@#$%^&*()-+=[]{}|;:\'",.<>/?`~';
+        const fontSize = 16;
+        const columns = canvas.width / fontSize;
 
-    function saveResultsToLocalStorage() {
-      localStorage.setItem('proxy_results', document.getElementById('result').innerHTML);
-      localStorage.setItem('proxy_stats', JSON.stringify({
-        total: document.getElementById('total').textContent,
-        active: document.getElementById('active').textContent,
-        inactive: document.getElementById('inactive').textContent
-      }));
-    }
+        const drops = [];
+        for (let x = 0; x < columns; x++) {
+            drops[x] = 1;
+        }
 
-    async function loadFromFiles() {
-      const files = document.getElementById('fileInput').files;
-      if (!files.length) return alert('Pilih minimal 1 file .txt');
-      let allText = document.getElementById('input').value.trim();
-      for (const file of files) {
-        const text = await file.text();
-        allText += '\n' + text.trim();
-      }
-      document.getElementById('input').value = allText.trim();
-      alert('Semua isi file berhasil digabung ke dalam textarea!');
-    }
+        function drawMatrix() {
+            ctx.fillStyle = 'rgba(0, 0, 0, 0.05)';
+            ctx.fillRect(0, 0, canvas.width, canvas.height);
 
-    async function startCheck() {
-      const inputEl = document.getElementById('input');
-      const result = document.getElementById('result');
-      const stats = { total: 0, active: 0, inactive: 0 };
+            ctx.fillStyle = '#00ff41';
+            ctx.font = `${fontSize}px Share Tech Mono`;
 
-      const lines = Array.from(new Set(
-        inputEl.value.trim().split('\n').map(x => x.trim()).filter(Boolean)
-      ));
-      inputEl.value = lines.join('\n');
-      result.innerHTML = '';
-      stats.total = lines.length;
-      document.getElementById('total').textContent = stats.total;
-      document.getElementById('active').textContent = 0;
-      document.getElementById('inactive').textContent = 0;
+            for (let i = 0; i < drops.length; i++) {
+                const text = chars.charAt(Math.floor(Math.random() * chars.length));
+                ctx.fillText(text, i * fontSize, drops[i] * fontSize);
 
-      for (let i = 0; i < lines.length; i++) {
-        const [ip, port] = lines[i].split(':');
-        if (!ip || !port) continue;
+                if (drops[i] * fontSize > canvas.height && Math.random() > 0.975) {
+                    drops[i] = 0;
+                }
 
-        const row = result.insertRow();
-        row.insertCell().textContent = i + 1;
-        row.insertCell().textContent = ip;
-        row.insertCell().textContent = port;
-        const statusCell = row.insertCell();
-        const countryCell = row.insertCell();
-        const ispCell = row.insertCell();
-        const protoCell = row.insertCell();
-        const delayCell = row.insertCell();
-        statusCell.textContent = '...';
-
-        setTimeout(async () => {
-          try {
-            const res = await fetch(`/check?ip=${ip}:${port}`);
-            const data = await res.json();
-
-            if (data.status === 'ACTIVE') {
-              statusCell.textContent = 'Active';
-              statusCell.className = 'green';
-              stats.active++;
-            } else {
-              statusCell.textContent = 'Inactive';
-              statusCell.className = 'red';
-              stats.inactive++;
+                drops[i]++;
             }
+        }
 
-            countryCell.textContent = data.country || '-';
-            ispCell.textContent = data.isp || '-';
-            protoCell.textContent = data.httpProtocol || '-';
-            delayCell.textContent = data.delay || '-';
-          } catch {
-            statusCell.textContent = 'Error';
-            statusCell.className = 'red';
-            stats.inactive++;
-          }
+        setInterval(drawMatrix, 33);
 
-          document.getElementById('active').textContent = stats.active;
-          document.getElementById('inactive').textContent = stats.inactive;
-          saveResultsToLocalStorage();
-          row.scrollIntoView({ behavior: 'smooth', block: 'end' });
-        }, 200 * i);
-      }
-    }
-
-    function getActiveProxies() {
-      return Array.from(document.querySelectorAll('#result tr'))
-        .filter(r => r.querySelector('.green'))
-        .map(r => {
-          const cells = r.querySelectorAll('td');
-          const country = (cells[4].textContent || '').split(' ')[0];
-          return [cells[1].textContent, cells[2].textContent, country || '-', cells[5].textContent || '-'].join(',');
-        })
-        .sort((a, b) => a.split(',')[2].localeCompare(b.split(',')[2]));
-    }
-
-    function copyToClipboard() {
-      const proxies = getActiveProxies().join('\n');
-      navigator.clipboard.writeText(proxies).then(() => alert('Disalin ke clipboard!'));
-    }
-
-    function copyIpPort() {
-      const active = Array.from(document.querySelectorAll('#result tr'))
-        .filter(r => r.querySelector('.green'))
-        .map(r => {
-          const cells = r.querySelectorAll('td');
-          return `${cells[1].textContent}:${cells[2].textContent}`;
+        window.addEventListener('resize', () => {
+            canvas.width = window.innerWidth;
+            canvas.height = window.innerHeight;
+            const newColumns = canvas.width / fontSize;
+            drops.length = 0;
+            for (let x = 0; x < newColumns; x++) {
+                drops[x] = 1;
+            }
         });
-      navigator.clipboard.writeText(active.join('\n'))
-        .then(() => alert('IP:Port aktif berhasil disalin!'));
-    }
 
-    function downloadTxt() {
-      const proxies = getActiveProxies().join('\n');
-      const blob = new Blob([proxies], { type: 'text/plain' });
-      const a = document.createElement('a');
-      a.href = URL.createObjectURL(blob);
-      a.download = 'active_proxies.txt';
-      a.click();
-    }
-  </script>
+        // --- Custom Notification Function ---
+        function showNotification(message) {
+            const notification = document.getElementById('customNotification');
+            const msgElement = document.getElementById('notificationMessage');
+
+            msgElement.textContent = message;
+            notification.classList.add('show');
+
+            setTimeout(() => {
+                notification.classList.remove('show');
+            }, 3000);
+        }
+
+        // --- Existing Proxy Checker JavaScript (modified for custom alerts) ---
+        window.onload = () => {
+            const link = document.createElement('link');
+            link.href = 'https://fonts.googleapis.com/css2?family=Share+Tech+Mono&display=swap';
+            link.rel = 'stylesheet';
+            document.head.appendChild(link);
+
+            const saved = localStorage.getItem('proxy_results');
+            if (saved) document.getElementById('result').innerHTML = saved;
+            const stats = JSON.parse(localStorage.getItem('proxy_stats') || '{}');
+            document.getElementById('total').textContent = stats.total || 0;
+            document.getElementById('active').textContent = stats.active || 0;
+            document.getElementById('inactive').textContent = stats.inactive || 0;
+        };
+
+        function saveResultsToLocalStorage() {
+            localStorage.setItem('proxy_results', document.getElementById('result').innerHTML);
+            localStorage.setItem('proxy_stats', JSON.stringify({
+                total: document.getElementById('total').textContent,
+                active: document.getElementById('active').textContent,
+                inactive: document.getElementById('inactive').textContent
+            }));
+        }
+
+        async function loadFromFiles() {
+            const files = document.getElementById('fileInput').files;
+            if (!files.length) return showNotification('Pilih minimal 1 file .txt');
+            let allText = document.getElementById('input').value.trim();
+            for (const file of files) {
+                const text = await file.text();
+                allText += '\n' + text.trim();
+            }
+            document.getElementById('input').value = allText.trim();
+            showNotification('File berhasil digabung!');
+        }
+
+        async function startCheck() {
+            const inputEl = document.getElementById('input');
+            const result = document.getElementById('result');
+            const stats = { total: 0, active: 0, inactive: 0 };
+
+            const lines = Array.from(new Set(
+                inputEl.value.trim().split('\n').map(x => x.trim()).filter(Boolean)
+            ));
+            inputEl.value = lines.join('\n');
+            result.innerHTML = '';
+            stats.total = lines.length;
+            document.getElementById('total').textContent = stats.total;
+            document.getElementById('inactive').textContent = 0;
+            document.getElementById('active').textContent = 0;
+
+            for (let i = 0; i < lines.length; i++) {
+                const [ip, port] = lines[i].split(':');
+                if (!ip || !port) continue;
+
+                const row = result.insertRow();
+                row.insertCell().textContent = i + 1;
+                row.insertCell().textContent = ip;
+                row.insertCell().textContent = port;
+                const statusCell = row.insertCell();
+                const countryCell = row.insertCell();
+                const ispCell = row.insertCell();
+                const protoCell = row.insertCell();
+                const delayCell = row.insertCell();
+                statusCell.textContent = '...';
+
+                (async (currentRow, currentStats) => {
+                    try {
+                        const res = await fetch(`/check?ip=${ip}:${port}`);
+                        const data = await res.json();
+
+                        if (data.status === 'ACTIVE') {
+                            statusCell.textContent = 'Active';
+                            statusCell.className = 'green';
+                            currentStats.active++;
+                        } else {
+                            statusCell.textContent = 'Inactive';
+                            statusCell.className = 'red';
+                            currentStats.inactive++;
+                        }
+
+                        countryCell.textContent = data.country || '-';
+                        ispCell.textContent = data.isp || '-';
+                        protoCell.textContent = data.httpProtocol || '-';
+                        delayCell.textContent = data.delay || '-';
+                    } catch {
+                        statusCell.textContent = 'Error';
+                        statusCell.className = 'red';
+                        currentStats.inactive++;
+                    }
+
+                    document.getElementById('active').textContent = currentStats.active;
+                    document.getElementById('inactive').textContent = currentStats.inactive;
+                    saveResultsToLocalStorage();
+                    currentRow.scrollIntoView({ behavior: 'smooth', block: 'end' });
+                })(row, stats);
+            }
+        }
+
+        function getActiveProxies() {
+            return Array.from(document.querySelectorAll('#result tr'))
+                .filter(r => r.querySelector('.green'))
+                .map(r => {
+                    const cells = r.querySelectorAll('td');
+                    const country = (cells[4] && cells[4].textContent ? cells[4].textContent.split(' ')[0] : '-');
+                    return [cells[1].textContent, cells[2].textContent, country, (cells[5] && cells[5].textContent ? cells[5].textContent : '-')].join(',');
+                })
+                .sort((a, b) => a.split(',')[2].localeCompare(b.split(',')[2]));
+        }
+
+        function copyToClipboard() {
+            const proxies = getActiveProxies().join('\n');
+            if (proxies.length === 0) {
+                return showNotification('Tidak ada proxy aktif untuk disalin!');
+            }
+            navigator.clipboard.writeText(proxies).then(() => showNotification('Proxy berhasil disalin!'));
+        }
+
+        function copyIpPort() {
+            const active = Array.from(document.querySelectorAll('#result tr'))
+                .filter(r => r.querySelector('.green'))
+                .map(r => {
+                    const cells = r.querySelectorAll('td');
+                    return `${cells[1].textContent}:${cells[2].textContent}`;
+                });
+            if (active.length === 0) {
+                return showNotification('Tidak ada IP:Port aktif untuk disalin!');
+            }
+            navigator.clipboard.writeText(active.join('\n'))
+                .then(() => showNotification('IP:Port aktif berhasil disalin!'));
+        }
+
+        function downloadTxt() {
+            const proxies = getActiveProxies().join('\n');
+            if (proxies.length === 0) {
+                return showNotification('Tidak ada proxy aktif untuk diunduh!');
+            }
+            const blob = new Blob([proxies], { type: 'text/plain' });
+            const a = document.createElement('a');
+            a.href = URL.createObjectURL(blob);
+            a.download = 'active_proxies.txt';
+            a.click();
+            showNotification('File berhasil diunduh!');
+        }
+    </script>
 </body>
 
 </html>
