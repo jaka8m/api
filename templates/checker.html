@@ -10,10 +10,10 @@
         body {
             margin: 0;
             padding: 0;
-            overflow: hidden; /* Prevent scrollbar from canvas */
-            font-family: 'Share Tech Mono', monospace; /* More hacker-like font */
-            background-color: #0a0a0a; /* Darker background */
-            color: #00ff41; /* Matrix green text */
+            overflow: scroll;
+            font-family: 'Share Tech Mono', monospace;
+            background-color: #0a0a0a;
+            color: #00ff41;
         }
 
         /* Matrix Canvas Overlay */
@@ -23,77 +23,69 @@
             left: 0;
             width: 100vw;
             height: 100vh;
-            z-index: -1; /* Send it to the back */
-            opacity: 0.6; /* Slight transparency */
+            z-index: -1;
+            opacity: 0.6;
         }
 
         /* Main Content Container */
         .container {
             position: relative;
-            z-index: 1; /* Keep content above canvas */
+            z-index: 1;
             padding: 20px;
             max-width: 900px;
             margin: 20px auto;
-            background-color: rgba(10, 10, 10, 0.85); /* Semi-transparent dark background */
+            background-color: rgba(10, 10, 10, 0.85);
             border-radius: 8px;
-            box-shadow: 0 0 20px rgba(0, 255, 65, 0.3); /* Green glow effect */
-            border: 1px solid #004d00; /* Subtle green border */
+            box-shadow: 0 0 20px rgba(0, 255, 65, 0.3);
+            border: 1px solid #004d00;
         }
 
         h2 {
-            color: #00ff41; /* Bright green */
+            color: #00ff41;
             margin-bottom: 15px;
             text-align: center;
-            text-shadow: 0 0 8px rgba(0, 255, 65, 0.7); /* Text glow */
+            text-shadow: 0 0 8px rgba(0, 255, 65, 0.7);
             letter-spacing: 2px;
         }
 
         textarea,
         input[type="file"] {
-            background-color: #001a00; /* Very dark green */
-            color: #00ff41; /* Matrix green text */
-            border: 1px solid #004d00; /* Darker green border */
+            background-color: #001a00;
+            color: #00ff41;
+            border: 1px solid #004d00;
             border-radius: 6px;
             padding: 12px;
             width: 100%;
             font-size: 15px;
             box-sizing: border-box;
-            resize: vertical; /* Allow vertical resize */
+            resize: vertical;
             font-family: 'Courier New', monospace;
-            box-shadow: inset 0 0 5px rgba(0, 255, 65, 0.2); /* Inner glow */
+            box-shadow: inset 0 0 5px rgba(0, 255, 65, 0.2);
         }
 
+        /* --- Modifikasi CSS Tombol Dimulai Di Sini --- */
         .controls {
             display: flex;
-            flex-direction: column;
-            gap: 12px;
+            flex-direction: column; /* Tetap kolom untuk susunan baris 1-2-2 */
+            gap: 10px; /* Jarak antar baris (misal: antara baris 1 dan baris 2) */
             margin-top: 20px;
-            align-items: center;
+            align-items: center; /* Pusatkan baris */
         }
 
         .controls .row {
             display: flex;
-            gap: 12px;
-            width: 100%;
-            justify-content: center;
-        }
-
-        .controls .row.full button {
-            flex: 1;
-            max-width: 350px;
-        }
-
-        .controls .row.half button {
-            flex: 1;
-            max-width: 170px;
+            flex-wrap: wrap; /* Izinkan tombol pecah baris jika tidak muat */
+            justify-content: center; /* Pusatkan tombol dalam baris */
+            gap: 10px; /* Jarak antar tombol di dalam satu baris */
+            width: 100%; /* Pastikan baris mengambil lebar penuh */
         }
 
         button {
-            background-color: #006633; /* Darker green button */
+            background-color: #006633;
             border: none;
             color: white;
-            padding: 12px 15px;
-            font-size: 16px;
+            padding: 10px 12px; /* Ukuran padding lebih kecil */
+            font-size: 14px; /* Ukuran font lebih kecil */
             border-radius: 5px;
             cursor: pointer;
             transition: background-color 0.3s ease, transform 0.1s ease, box-shadow 0.3s ease;
@@ -101,12 +93,19 @@
             font-family: 'Share Tech Mono', monospace;
             text-transform: uppercase;
             letter-spacing: 1px;
-            box-shadow: 0 0 10px rgba(0, 255, 65, 0.4); /* Button glow */
+            box-shadow: 0 0 10px rgba(0, 255, 65, 0.4);
+            flex: 1 1 auto; /* Default fleksibilitas: bisa menyusut/membesar, basis auto */
+            max-width: 170px; /* Batasi lebar maksimum per tombol */
         }
 
+        /* Override untuk tombol 'Mulai Cek' agar lebih lebar di desktop */
+        .controls .row.full button {
+            max-width: 350px; /* Lebih lebar untuk tombol tunggal */
+        }
+        
         button:hover {
-            background-color: #008040; /* Lighter green on hover */
-            transform: translateY(-2px); /* Slight lift */
+            background-color: #008040;
+            transform: translateY(-2px);
             box-shadow: 0 0 15px rgba(0, 255, 65, 0.6);
         }
 
@@ -114,6 +113,8 @@
             transform: translateY(0);
             box-shadow: 0 0 5px rgba(0, 255, 65, 0.2);
         }
+        /* --- Modifikasi CSS Tombol Berakhir Di Sini --- */
+
 
         .stats {
             margin-top: 25px;
@@ -138,14 +139,14 @@
         table {
             width: 100%;
             border-collapse: collapse;
-            background-color: #001a00; /* Dark green for table background */
+            background-color: #001a00;
             min-width: 800px;
             margin: 0 auto;
         }
 
         th {
-            background-color: #003300; /* Header green */
-            color: #ccffcc; /* Lighter green for header text */
+            background-color: #003300;
+            color: #ccffcc;
             padding: 12px;
             text-align: left;
             border-bottom: 2px solid #006600;
@@ -155,29 +156,29 @@
 
         td {
             padding: 10px;
-            border-bottom: 1px dashed #004d00; /* Dashed green border */
-            color: #00e676; /* Main table text color */
+            border-bottom: 1px dashed #004d00;
+            color: #00e676;
             font-size: 14px;
         }
 
         td:last-child {
-            border-bottom: none; /* No border for last row cell */
+            border-bottom: none;
         }
 
         .green {
-            color: #a7ffeb; /* Lighter, vibrant green for active */
+            color: #a7ffeb;
             font-weight: bold;
             text-shadow: 0 0 3px rgba(167, 255, 235, 0.7);
         }
 
         .red {
-            color: #ff5252; /* Red for inactive/error */
+            color: #ff5252;
             font-weight: bold;
             text-shadow: 0 0 3px rgba(255, 82, 82, 0.7);
         }
 
         ::file-selector-button {
-            background: #004d00; /* Darker green for file button */
+            background: #004d00;
             color: white;
             border: none;
             padding: 8px 15px;
@@ -188,6 +189,33 @@
 
         ::file-selector-button:hover {
             background: #006600;
+        }
+
+        /* Custom Notification Styling */
+        .custom-notification {
+            position: fixed;
+            bottom: 20px;
+            right: 20px;
+            background-color: rgba(0, 51, 0, 0.9);
+            color: #00ff41;
+            padding: 15px 25px;
+            border-radius: 8px;
+            border: 1px solid #008040;
+            box-shadow: 0 0 15px rgba(0, 255, 65, 0.7);
+            z-index: 1000;
+            opacity: 0;
+            visibility: hidden;
+            transform: translateY(20px);
+            transition: opacity 0.4s ease-out, transform 0.4s ease-out, visibility 0.4s;
+            font-family: 'Share Tech Mono', monospace;
+            font-size: 16px;
+            letter-spacing: 0.5px;
+        }
+
+        .custom-notification.show {
+            opacity: 1;
+            visibility: visible;
+            transform: translateY(0);
         }
 
         /* Responsive adjustments */
@@ -201,15 +229,29 @@
                 font-size: 24px;
             }
 
-            .controls .row {
-                flex-direction: column;
+            /* --- Modifikasi Responsive Tombol Dimulai Di Sini --- */
+            /* Di layar kecil, tombol akan tetap mencoba berjejer 2,
+               tetapi akan turun ke baris baru jika tidak muat.
+               Max-width per tombol akan membatasi agar tidak terlalu kecil atau terlalu besar. */
+            button {
+                flex: 1 1 45%; /* Setiap tombol akan mencoba mengambil 45% lebar baris,
+                                  menyisakan ruang untuk gap 10px di antaranya.
+                                  Ini memungkinkan 2 tombol per baris. */
+                max-width: 100%; /* Batalkan max-width global untuk tombol */
             }
 
-            .controls .row.full button,
-            .controls .row.half button {
-                max-width: none;
-                width: 100%;
+            /* Tombol 'Mulai Cek' di baris penuh akan mengambil 100% di HP */
+            .controls .row.full button {
+                flex: 1 1 100%;
+                max-width: 100%;
             }
+            
+            /* Jarak antar baris */
+            .controls {
+                gap: 8px;
+            }
+
+            /* --- Modifikasi Responsive Tombol Berakhir Di Sini --- */
 
             th,
             td {
@@ -220,12 +262,25 @@
             .stats {
                 font-size: 15px;
             }
+
+            .custom-notification {
+                bottom: 10px;
+                right: 10px;
+                left: 10px;
+                width: auto;
+                font-size: 14px;
+                padding: 10px 15px;
+            }
         }
     </style>
 </head>
 
 <body>
     <canvas id="matrixCanvas"></canvas>
+
+    <div id="customNotification" class="custom-notification">
+        <span id="notificationMessage"></span>
+    </div>
 
     <div class="container">
         <h2>Matrix Proxy Checker</h2>
